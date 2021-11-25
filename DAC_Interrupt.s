@@ -8,15 +8,19 @@ LCD_cnt_h:	ds 1   ; reserve 1 byte for variable LCD_cnt_h
 LCD_cnt_ms:	ds 1   ; reserve 1 byte for ms counter
 LCD_tmp:	ds 1   ; reserve 1 byte for temporary use
 LCD_counter:	ds 1   ; reserve 1 byte for counting through nessage
+Freq_counter:   ds 1
     
 psect	dac_code, class=CODE
 	
 DAC_Int_Hi:	
 	btfss	TMR0IF		; check that this is timer0 interrupt
 	retfie	f		; if not then return
-	incf	LATJ, F, A	; increment PORTJ
 	bcf	TMR0IF		; clear interrupt flag
-	
+
+	movlw	8
+	movwf	Freq_counter
+DAC_Loop:
+	incf	LATJ, F, A	; increment PORTJ
 	; Set CS* and WR* low
 	movlw	0x0
 	movwf	PORTD
@@ -27,19 +31,8 @@ DAC_Int_Hi:
 	; Set CS* and WR* high
 	movlw	0x1 | 0x2
 	movwf	PORTD
-	
-	incf	LATJ, F, A	; increment PORTJ
-		; Set CS* and WR* low
-	movlw	0x0
-	movwf	PORTD
-	
-	; Wait 40ns
-	;call	LCD_delay_x4us
-	;nop
-	; Set CS* and WR* high
-	movlw	0x1 | 0x2
-	movwf	PORTD
-	
+	decfsz	Freq_counter
+	goto	DAC_Loop
 	retfie	f		; fast return from interrupt
 
 DAC_Setup:
@@ -47,6 +40,8 @@ DAC_Setup:
 	clrf	TRISJ, A	; Set PORTJ as all outputs
 	clrf	LATD, A		; Clear PORTC outputs
 	clrf	LATJ, A		; Clear PORTJ outputs
+	
+
 
 	; Set both CS* and WR* to high
 	movlw	0x1 | 0x2
