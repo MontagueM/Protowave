@@ -17,7 +17,7 @@ DAC_Int_Hi:
 	retfie	f		; if not then return
 	bcf	TMR0IF		; clear interrupt flag
 
-	movlw	8
+	movlw	4
 	movwf	Freq_counter
 DAC_Loop:
 	incf	LATJ, F, A	; increment PORTJ
