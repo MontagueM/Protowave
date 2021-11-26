@@ -9,6 +9,8 @@ LCD_cnt_ms:	ds 1   ; reserve 1 byte for ms counter
 LCD_tmp:	ds 1   ; reserve 1 byte for temporary use
 LCD_counter:	ds 1   ; reserve 1 byte for counting through nessage
 Freq_counter:   ds 1
+freq_test	EQU 0x65
+
     
 psect	dac_code, class=CODE
 	
@@ -17,8 +19,14 @@ DAC_Int_Hi:
 	retfie	f		; if not then return
 	bcf	TMR0IF		; clear interrupt flag
 
-	movlw	1
-	movwf	Freq_counter
+	;movlw	1
+	;movlw	0x1
+	;movwf	freq_test
+	;movwf	Freq_counter
+	movff	freq_test, Freq_counter
+	movlw	0
+	cpfsgt	Freq_counter
+	retfie	f
 DAC_Loop:
 	incf	LATJ, F, A	; increment PORTJ
 	; Set CS* and WR* low
@@ -33,6 +41,7 @@ DAC_Loop:
 	movwf	PORTD
 	decfsz	Freq_counter
 	goto	DAC_Loop
+	movff	freq_test, Freq_counter
 	retfie	f		; fast return from interrupt
 
 DAC_Setup:
@@ -40,6 +49,9 @@ DAC_Setup:
 	clrf	TRISJ, A	; Set PORTJ as all outputs
 	clrf	LATD, A		; Clear PORTC outputs
 	clrf	LATJ, A		; Clear PORTJ outputs
+	
+	;movlw	1
+	;movwf	Freq_counter
 	
 
 
