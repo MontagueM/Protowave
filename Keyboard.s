@@ -43,17 +43,17 @@ KB_Setup:
 KB_SetNotPressed:
     	movlw	0x0
 	movwf	KB_Pressed, A
-	;movlw	0x1
-	;movwf	freq_test, A
+	movlw	0x0
+	movwf	freq_test, A
 	return
 
 KB_main:
 	call	KB_SetNotPressed
 	call    Acquire_Keypress
 	call    Check_Key_Pressed
-	movwf	RET_status
-	decfsz	RET_status
-	return
+	;movwf	RET_status
+	;decfsz	RET_status
+	;return
 	; If key pressed and is not prev key, continue
 	call    Decode_Keypress
 	call    Display_Keypress
@@ -120,8 +120,9 @@ Check_Key_Pressed:
 	; check KB_val is not zero
 	movlw	0x00
 	cpfsgt	KB_Col
-	retlw	0
-
+	;retlw	0
+	bra	KB_SetNotPressed
+	
 	; are we already pressed
 	;movlw	0x00
 	;cpfseq	KB_Pressed
