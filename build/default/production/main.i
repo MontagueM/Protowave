@@ -10974,5 +10974,5 @@ int_hi: org 0x0008 ; high vector, no low vector
 start: ;call DAC_Setup
  call KB_Setup
  ;goto $ ; Sit in infinite loop
- ;goto start
+ goto start
  end rst

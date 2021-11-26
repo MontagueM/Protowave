@@ -37,7 +37,7 @@ KB_Setup:
 	movlw	3
 	movwf	KB_Fix
 	call	LCD_Setup
-	goto	KB_init
+	goto	KB_main
 
 	; ******* Main programme ****************************************
 
@@ -46,17 +46,17 @@ KB_SetNotPressed:
 	movwf	KB_Pressed, A
 	return
 
-KB_init:
+KB_main:
 	call	KB_SetNotPressed
-KB_loop:
 	call    Acquire_Keypress
-	;call    Check_Key_Pressed
-	;movwf	RET_status
-	;decfsz	RET_status
+	call    Check_Key_Pressed
+	movwf	RET_status
+	decfsz	RET_status
+	return
 	; If key pressed and is not prev key, continue
 	call    Decode_Keypress
-	;call    Display_Keypress
-	goto	KB_loop
+	call    Display_Keypress
+	goto	KB_main
 	return
     
 Acquire_Keypress:
@@ -91,8 +91,8 @@ Acquire_Keypress:
 	
 	; If no column pressed return
 	movlw	0x00
-	cpfsgt	KB_Col, A
-	goto	KB_init
+	cpfsgt	KB_Col
+	return
 	
 	; Configure bits 0-3 output, 4-7 input
 	movlw	0xF0
@@ -116,22 +116,23 @@ Acquire_Keypress:
 	return
 
 Check_Key_Pressed:
-	; check KB press is not zero
-	;movlw	0x00
-	;cpfsgt	KB_Row
-	;bra	KB_init
+	; check KB_val is not zero
+	movlw	0x00
+	cpfsgt	KB_Col
+	retlw	0
 
 	; are we already pressed
-	movlw	0x00
-	cpfseq	KB_Pressed, A
-	bra	KB_loop
+	;movlw	0x00
+	;cpfseq	KB_Pressed
+	;retlw	0
 	
-	; If not, set pressed
-	movlw	0x01
-	movwf	KB_Pressed
-	return
+	retlw	1
     
 Decode_Keypress:
+	; Set pressed
+	movlw	0x01
+	movwf	KB_Pressed
+    
     	; Decode results to determine
 	; Print results to PORTD
 	
