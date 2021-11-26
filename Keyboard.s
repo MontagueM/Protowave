@@ -26,8 +26,7 @@ myTable:
 	myTable_l   EQU	16	; length of data
 	align	2
 	
-psect	code, abs	
-rst: 	org 0x0
+psect	kb_code,class=CODE
  	;goto	KB_Setup
 
 	; ******* Programme FLASH read Setup Code ***********************
