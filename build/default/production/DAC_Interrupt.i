@@ -10975,7 +10975,7 @@ DAC_Int_Hi:
  retfie f ; if not then return
  bcf ((INTCON) and 0FFh), 2, a ; clear interrupt flag
 
- movlw 4
+ movlw 1
  movwf Freq_counter
 DAC_Loop:
  incf LATJ, F, A ; increment PORTJ

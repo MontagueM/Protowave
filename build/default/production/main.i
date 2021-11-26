@@ -10966,13 +10966,15 @@ extrn KB_Setup
 psect code, abs
 rst: org 0x0000 ; reset vector
 
- goto start
+ goto init
 
 int_hi: org 0x0008 ; high vector, no low vector
  goto DAC_Int_Hi
 
-start: call DAC_Setup
- ;call KB_Setup
- goto $ ; Sit in infinite loop
- ;goto start
+init:
+     call DAC_Setup
+start:
+ call KB_Setup
+ ;goto $ ; Sit in infinite loop
+ goto start
  end rst

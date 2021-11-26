@@ -149,12 +149,12 @@ Decode_Keypress:
 	cpfslt	KB_Col
 	movff	KB_Fix, KB_Col
 	
-	movlw	0x00
-	movwf	TRISH, A
-	movff	KB_Col, PORTH
-	movlw	0x00
-	movwf	TRISJ, A
-	movff	KB_Row, PORTJ
+	;movlw	0x00
+	;movwf	TRISH, A
+	;movff	KB_Col, PORTH
+	;movlw	0x00
+	;movwf	TRISJ, A
+	;movff	KB_Row, PORTJ
 	
 	; KB_Col + 4 * KB_Row
 	movf	KB_Row, 0
