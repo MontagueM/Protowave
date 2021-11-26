@@ -171,7 +171,7 @@ Decode_Keypress:
     return
     
 Display_Keypress:
-	return
+	;return
     	; read the corresponding value
 	lfsr	0, myArray	; Load FSR0 with address in RAM	
 	movlw	low highword(myTable)	; address of data in PM
