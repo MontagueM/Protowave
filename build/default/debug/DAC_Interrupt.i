@@ -10966,40 +10966,47 @@ LCD_cnt_h: ds 1 ; reserve 1 byte for variable LCD_cnt_h
 LCD_cnt_ms: ds 1 ; reserve 1 byte for ms counter
 LCD_tmp: ds 1 ; reserve 1 byte for temporary use
 LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
+Freq_counter: ds 1
 
 psect dac_code, class=CODE
 
 DAC_Int_Hi:
  btfss ((INTCON) and 0FFh), 2, a ; check that this is timer0 interrupt
  retfie f ; if not then return
- incf LATJ, F, A ; increment PORTJ
  bcf ((INTCON) and 0FFh), 2, a ; clear interrupt flag
 
+ movlw 4
+ movwf Freq_counter
+DAC_Loop:
+ incf LATJ, F, A ; increment PORTJ
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
- ;movlw 0x0
- ;movwf PORTC
+ movlw 0x0
+ movwf PORTD
 
  ; Wait 40ns
  ;call LCD_delay_x4us
-
+ ;nop
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* high
- ;movlw 0x1 | 0x2
- ;movwf PORTC
-
+ movlw 0x1 | 0x2
+ movwf PORTD
+ decfsz Freq_counter
+ goto DAC_Loop
  retfie f ; fast return from interrupt
 
 DAC_Setup:
- clrf TRISC, A ; Control line set all outputs for ((EECON1) and 0FFh), 1, a*
+ clrf TRISD, A ; Control line set all outputs for ((EECON1) and 0FFh), 1, a*
  clrf TRISJ, A ; Set PORTJ as all outputs
- clrf LATC, A ; Clear PORTC outputs
+ clrf LATD, A ; Clear PORTC outputs
  clrf LATJ, A ; Clear PORTJ outputs
+
+
 
  ; Set both ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* to high
  movlw 0x1 | 0x2
- movwf PORTC
+ movwf PORTD
 
  movlw 11001000B ; Set timer0 to 16-bit, Fosc/4/256
- movwf T1CON, A ; = 62.5KHz clock rate, approx 1sec rollover
+ movwf T0CON, A ; = 62.5KHz clock rate, approx 1sec rollover
  bsf ((INTCON) and 0FFh), 5, a ; Enable timer0 interrupt
  bsf ((INTCON) and 0FFh), 7, a ; Enable all interrupts
  return
@@ -11007,10 +11014,10 @@ DAC_Setup:
 LCD_delay_x4us: ; delay given in chunks of 4 microsecond in W
  movwf LCD_cnt_l, A ; now need to multiply by 16
  swapf LCD_cnt_l, F, A ; swap nibbles
- movlw 0x0f
+ movlw 0x01
  andwf LCD_cnt_l, W, A ; move low nibble to W
  movwf LCD_cnt_h, A ; then to LCD_cnt_h
- movlw 0xf0
+ movlw 0x01
  andwf LCD_cnt_l, F, A ; keep high nibble in LCD_cnt_l
  call LCD_delay
  return

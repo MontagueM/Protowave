@@ -12,7 +12,7 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/default/production/Keyboard.o
-code CODE 0 0 0 10E 1
+code CODE 0 0 0 102 1
 data CONST 0 1FE92 1FE92 10 1
 udata_bank4 BANK4 1 400 400 80 1
 udata_acs COMRAM 1 0 0 B 1
@@ -20,7 +20,7 @@ $build/default/production/DAC_Interrupt.o
 udata_acs COMRAM 1 11 11 6 1
 dac_code CODE 0 1FEA2 1FEA2 50 1
 $build/default/production/main.o
-code CODE 0 0 0 14 1
+code CODE 0 0 0 10 1
 $build/default/production/LCD.o
 udata_acs COMRAM 1 B B 6 1
 lcd_code CODE 0 1FEF2 1FEF2 10E 1
@@ -43,17 +43,17 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST 10E-1FE91 1
+CONST 102-1FE91 1
 IDLOC 200000-200007 1
 SMALLCONST 1000-1FE91 1
-CODE 10E-1FE91 1
+CODE 102-1FE91 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
 BANK13 D00-DFF 1
 BANK14 E00-EFF 1
 BANK15 F00-F15 1
-BIGRAM 10E-F15 1
+BIGRAM 102-F15 1
 COMRAM 17-5F 1
 CONFIG 300000-30000D 1
 EEDATA F00000-F003FF 1
@@ -84,110 +84,105 @@ C code CODE >40:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 12 code CODE >46:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 14 code CODE >47:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 16 code CODE >50:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1A code CODE >51:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1E code CODE >52:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-22 code CODE >53:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-24 code CODE >54:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-26 code CODE >55:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-28 code CODE >57:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-2C code CODE >58:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-30 code CODE >59:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-34 code CODE >60:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-36 code CODE >63:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-38 code CODE >64:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-3A code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-3C code CODE >66:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-3E code CODE >69:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-40 code CODE >70:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-42 code CODE >71:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-44 code CODE >72:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-46 code CODE >74:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-48 code CODE >75:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-4A code CODE >78:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-4C code CODE >79:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-50 code CODE >82:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-52 code CODE >83:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-54 code CODE >86:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-58 code CODE >89:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-5A code CODE >90:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-5C code CODE >93:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-5E code CODE >94:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-60 code CODE >95:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-62 code CODE >98:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-64 code CODE >99:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-66 code CODE >101:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-68 code CODE >102:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-6C code CODE >105:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-6E code CODE >106:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-70 code CODE >110:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-74 code CODE >111:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-76 code CODE >112:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-78 code CODE >113:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-7A code CODE >116:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-7C code CODE >120:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-7E code CODE >121:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-80 code CODE >122:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-82 code CODE >129:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-84 code CODE >133:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-86 code CODE >134:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-88 code CODE >140:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-8A code CODE >141:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-8C code CODE >142:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-8E code CODE >143:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-90 code CODE >146:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-92 code CODE >147:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-94 code CODE >148:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-98 code CODE >149:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-9A code CODE >150:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-9C code CODE >151:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-A0 code CODE >153:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-A2 code CODE >154:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-A4 code CODE >155:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-A8 code CODE >156:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-AA code CODE >157:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-AC code CODE >158:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-B0 code CODE >161:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-B2 code CODE >162:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-B4 code CODE >163:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-B6 code CODE >164:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-B8 code CODE >165:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-BA code CODE >166:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-BC code CODE >167:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-BE code CODE >168:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-C0 code CODE >173:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-C4 code CODE >174:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-C6 code CODE >175:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-C8 code CODE >176:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-CA code CODE >177:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-CC code CODE >178:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-CE code CODE >179:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-D0 code CODE >181:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-D2 code CODE >182:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-D4 code CODE >183:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-D6 code CODE >185:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-D8 code CODE >186:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-DC code CODE >187:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-E0 code CODE >188:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-E2 code CODE >192:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-E4 code CODE >193:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-E6 code CODE >194:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-EA code CODE >195:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-EC code CODE >196:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-EE code CODE >197:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-F0 code CODE >200:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-F2 code CODE >201:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-F4 code CODE >202:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-F6 code CODE >203:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-F8 code CODE >204:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-FA code CODE >205:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-FC code CODE >206:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-FE code CODE >207:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-102 code CODE >208:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-104 code CODE >211:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-106 code CODE >212:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-108 code CODE >213:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-10A code CODE >214:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-10C code CODE >215:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1A code CODE >52:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1E code CODE >57:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+22 code CODE >59:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+26 code CODE >60:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+28 code CODE >63:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+2A code CODE >64:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+2C code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+2E code CODE >66:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+30 code CODE >69:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+32 code CODE >70:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+34 code CODE >71:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+36 code CODE >72:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+38 code CODE >74:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+3A code CODE >75:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+3C code CODE >78:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+3E code CODE >79:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+42 code CODE >82:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+44 code CODE >83:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+46 code CODE >86:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+4A code CODE >89:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+4C code CODE >90:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+4E code CODE >93:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+50 code CODE >94:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+52 code CODE >95:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+56 code CODE >98:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+58 code CODE >99:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+5A code CODE >101:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+5C code CODE >102:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+60 code CODE >105:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+62 code CODE >106:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+64 code CODE >110:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+68 code CODE >111:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+6A code CODE >112:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+6C code CODE >113:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+6E code CODE >116:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+70 code CODE >125:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+72 code CODE >126:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+74 code CODE >127:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+76 code CODE >130:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+78 code CODE >131:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+7A code CODE >132:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+7C code CODE >139:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+7E code CODE >140:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+80 code CODE >141:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+82 code CODE >142:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+84 code CODE >145:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+86 code CODE >146:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+88 code CODE >147:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+8C code CODE >148:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+8E code CODE >149:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+90 code CODE >150:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+94 code CODE >152:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+96 code CODE >153:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+98 code CODE >154:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+9C code CODE >155:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+9E code CODE >156:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+A0 code CODE >157:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+A4 code CODE >160:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+A6 code CODE >161:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+A8 code CODE >162:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+AA code CODE >163:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+AC code CODE >164:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+AE code CODE >165:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+B0 code CODE >166:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+B2 code CODE >167:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+B4 code CODE >172:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+B8 code CODE >173:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+BA code CODE >174:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+BC code CODE >175:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+BE code CODE >176:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+C0 code CODE >177:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+C2 code CODE >178:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+C4 code CODE >180:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+C6 code CODE >181:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+C8 code CODE >182:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+CA code CODE >184:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+CC code CODE >185:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+D0 code CODE >186:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+D4 code CODE >187:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+D6 code CODE >191:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+D8 code CODE >192:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+DA code CODE >193:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+DE code CODE >194:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+E0 code CODE >195:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+E2 code CODE >196:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+E4 code CODE >199:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+E6 code CODE >200:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+E8 code CODE >201:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+EA code CODE >202:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+EC code CODE >203:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+EE code CODE >204:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+F0 code CODE >205:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+F2 code CODE >206:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+F6 code CODE >207:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+F8 code CODE >210:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+FA code CODE >211:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+FC code CODE >212:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+FE code CODE >213:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+100 code CODE >214:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 $build/default/production/DAC_Interrupt.o
 1FEA2 dac_code CODE >16:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FEA4 dac_code CODE >17:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
@@ -233,7 +228,6 @@ $build/default/production/main.o
 4 code CODE >12:H:\Desktop\Microprocessors\Protowave\main.s
 8 code CODE >13:H:\Desktop\Microprocessors\Protowave\main.s
 C code CODE >16:H:\Desktop\Microprocessors\Protowave\main.s
-10 code CODE >18:H:\Desktop\Microprocessors\Protowave\main.s
 $build/default/production/LCD.o
 1FEF2 lcd_code CODE >19:H:\Desktop\Microprocessors\Protowave\LCD.s
 1FEF4 lcd_code CODE >20:H:\Desktop\Microprocessors\Protowave\LCD.s
