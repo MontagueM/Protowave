@@ -10958,7 +10958,7 @@ ENDM
 # 5 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\xc.inc" 2 3
 # 2 "DAC_Interrupt.s" 2
 
-global DAC_Setup, DAC_Int_Hi
+global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
 
 psect udata_acs ; named variables in access ram
 LCD_cnt_l: ds 1 ; reserve 1 byte for variable LCD_cnt_l
@@ -10967,41 +10967,48 @@ LCD_cnt_ms: ds 1 ; reserve 1 byte for ms counter
 LCD_tmp: ds 1 ; reserve 1 byte for temporary use
 LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
 Freq_counter: ds 1
-freq_test EQU 0x65
+DAC_freq_index: ds 1
+psect udata_bank4
+scaleArray: ds 0x40 ; reserve 128 bytes for message data
 
+psect data
+
+scaleTable:
+ db 0x1b, 0x01
+ db 0xfc, 0x00
+ db 0xee, 0x00
+ db 0xd3, 0x00
+ db 0xbc, 0x00
+ db 0xb1, 0x00
+ db 0xa8, 0x00
+ db 0xa8, 0x00
+ db 0x1b, 0x01
+ db 0xfc, 0x00
+ db 0xee, 0x00
+ db 0xd3, 0x00
+ db 0xbc, 0x00
+ db 0xb1, 0x00
+ db 0xa8, 0x00
+ db 0xa8, 0x00
+ scaleTable_l EQU 32 ; length of data
+ align 2
 
 psect dac_code, class=CODE
 
 DAC_Int_Hi:
- btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 1 interrupt
+ btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 4 interrupt
  retfie f ; if not then return
- ;banksel PIR4
- bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR3) and 0FFh), 1, a flag
+ bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR4) and 0FFh), 1, a flag
 
- ;movlw 1
- ;movlw 0x1
- ;movwf freq_test
- ;movwf Freq_counter
- ;movff freq_test, Freq_counter
- ;movlw 0
- ;cpfsgt Freq_counter
- ;retfie f
 DAC_Loop:
- ;code 0x0008
  incf LATJ, F, A ; increment PORTJ
+ incf LATJ, F, A
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
  movlw 0x0
  movwf PORTD
-
- ; Wait 40ns
- ;call LCD_delay_x4us
- ;nop
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* high
  movlw 0x1 | 0x2
  movwf PORTD
- ;decfsz Freq_counter
- ;goto DAC_Loop
- ;movff freq_test, Freq_counter
  retfie f ; fast return from interrupt
 
 DAC_Setup:
@@ -11010,39 +11017,50 @@ DAC_Setup:
  clrf LATD, A ; Clear PORTC outputs
  clrf LATJ, A ; Clear PORTJ outputs
 
- ;movlw 1
- ;movwf Freq_counter
-
-
-
  ; Set both ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* to high
  movlw 0x1 | 0x2
  movwf PORTD
 
- movlw 00000001B ; Set timer0 to 16-bit, Fosc/4/256
- movwf T1CON ; = 62.5KHz clock rate, approx 1sec rollover
+ movlw 00000001B
+ movwf T1CON
 
-
- ;banksel CCPTMRS1
  bcf ((CCPTMRS1) and 0FFh), 1, b
  movlw 000000001B
  movwf CCPTMRS1
- ;banksel 0
- movlw 00001011B ; Set timer0 to 16-bit, Fosc/4/256
- movwf CCP4CON ; = 62.5KHz clock rate, approx 1sec rollover
- movlw 0x01
- movwf CCPR4L,F
+ movlw 00001011B
+ movwf CCP4CON
+ movlw 0xee
+ movwf CCPR4L
  movlw 0x00
- movwf CCPR4H,F
+ movwf CCPR4H
 
- ;banksel PIE4
  bsf ((PIE4) and 0FFh), 1, a
- ;banksel INTCON
  bsf ((INTCON) and 0FFh), 7, a
  bsf ((INTCON) and 0FFh), 6, a
- ;banksel 0
 
+ return
 
+DAC_change_frequency:
+ ; Take target from W
+ movwf DAC_freq_index
+
+ lfsr 0, scaleArray ; Load FSR0 with address in RAM
+ movlw low highword(scaleTable) ; address of data in PM
+ movwf TBLPTRU, A ; load upper bits to TBLPTRU
+ movlw high(scaleTable) ; address of data in PM
+ movwf TBLPTRH, A ; load high byte to TBLPTRH
+ movlw low(scaleTable) ; address of data in PM
+ movwf TBLPTRL, A ; load low byte to TBLPTRL
+
+ movf DAC_freq_index, 0
+ addwfc TBLPTRL, 0
+ addwfc TBLPTRL, 0
+ movwf TBLPTRL, A
+
+ tblrd*+
+ movff TABLAT, CCPR4L
+ tblrd*+
+ movff TABLAT, CCPR4H
  return
 
 LCD_delay_x4us: ; delay given in chunks of 4 microsecond in W

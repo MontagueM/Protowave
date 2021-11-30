@@ -2,6 +2,7 @@
     
 global	KB_Setup
 extrn	LCD_Write_Message, LCD_Setup
+extrn	DAC_change_frequency
 psect	udata_acs   ; reserve data space in access ram
 
 myTable__1:ds 1
@@ -17,12 +18,12 @@ LCD_cnt_ms:	ds 1   ; reserve 1 byte for ms counter
 RET_status:	ds 1
 freq_test	EQU 0x65
 psect	udata_bank4 ; reserve data anywhere in RAM (here at 0x400)
-myArray:    ds 0x80 ; reserve 128 bytes for message data
+myArray:    ds 0x40 ; reserve 128 bytes for message data
 
 psect	data    
 	; ******* myTable, data in programme memory, and its length *****
 myTable:	
-	db	'1','2','3','F','4','5','6','E','7','8','9','D','A','0','B','C'
+	db	'A','B','C','D','E','F','G','A','A','B','C','D','E','F','G','A'
 	myTable_l   EQU	16	; length of data
 	align	2
 	
@@ -172,7 +173,9 @@ Decode_Keypress:
     return
     
 Display_Keypress:
-	;return
+    	movf	KB_Fin, 0
+	call	DAC_change_frequency
+	return
     	; read the corresponding value
 	lfsr	0, myArray	; Load FSR0 with address in RAM	
 	movlw	low highword(myTable)	; address of data in PM
@@ -189,6 +192,9 @@ Display_Keypress:
 	movlw	1
 	lfsr	2, myArray
 	call	LCD_Write_Message
+	
+	movf	KB_Fin, 0
+	call	DAC_change_frequency
     return
     
 ; ** a few delay routines below here as LCD timing can be quite critical ****
