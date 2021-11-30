@@ -15,33 +15,18 @@ freq_test	EQU 0x65
 psect	dac_code, class=CODE
 	
 DAC_Int_Hi:	
-	btfss	TMR0IF		; check that this is timer0 interrupt
+	btfss	CCP4IF		; check that this is ccp timer 4 interrupt
 	retfie	f		; if not then return
-	bcf	TMR0IF		; clear interrupt flag
+	bcf	CCP4IF	        ; clear the CCP4IF flag
 
-	;movlw	1
-	;movlw	0x1
-	;movwf	freq_test
-	;movwf	Freq_counter
-	movff	freq_test, Freq_counter
-	movlw	0
-	cpfsgt	Freq_counter
-	retfie	f
 DAC_Loop:
 	incf	LATJ, F, A	; increment PORTJ
 	; Set CS* and WR* low
 	movlw	0x0
 	movwf	PORTD
-	
-	; Wait 40ns
-	;call	LCD_delay_x4us
-	;nop
 	; Set CS* and WR* high
 	movlw	0x1 | 0x2
 	movwf	PORTD
-	decfsz	Freq_counter
-	goto	DAC_Loop
-	movff	freq_test, Freq_counter
 	retfie	f		; fast return from interrupt
 
 DAC_Setup:
@@ -49,20 +34,28 @@ DAC_Setup:
 	clrf	TRISJ, A	; Set PORTJ as all outputs
 	clrf	LATD, A		; Clear PORTC outputs
 	clrf	LATJ, A		; Clear PORTJ outputs
-	
-	;movlw	1
-	;movwf	Freq_counter
-	
-
 
 	; Set both CS* and WR* to high
 	movlw	0x1 | 0x2
 	movwf	PORTD
 	
-	movlw	11001000B	; Set timer0 to 16-bit, Fosc/4/256
-	movwf	T0CON, A	; = 62.5KHz clock rate, approx 1sec rollover
-	bsf	TMR0IE		; Enable timer0 interrupt
-	bsf	GIE		; Enable all interrupts
+	movlw	00000001B
+	movwf	T1CON
+	
+	bcf	C4TSEL1
+	movlw	000000001B
+	movwf	CCPTMRS1
+	movlw	00001011B		
+	movwf	CCP4CON         	
+	movlw	0x01
+	movwf	CCPR4L
+	movlw	0x00
+	movwf	CCPR4H
+	
+	bsf	CCP4IE	
+	bsf	GIE
+	bsf	PEIE
+	
 	return
 	
 LCD_delay_x4us:		    ; delay given in chunks of 4 microsecond in W

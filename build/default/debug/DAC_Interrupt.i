@@ -10967,17 +10967,27 @@ LCD_cnt_ms: ds 1 ; reserve 1 byte for ms counter
 LCD_tmp: ds 1 ; reserve 1 byte for temporary use
 LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
 Freq_counter: ds 1
+freq_test EQU 0x65
+
 
 psect dac_code, class=CODE
 
 DAC_Int_Hi:
- btfss ((INTCON) and 0FFh), 2, a ; check that this is timer0 interrupt
+ btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 1 interrupt
  retfie f ; if not then return
- bcf ((INTCON) and 0FFh), 2, a ; clear interrupt flag
+ ;banksel PIR4
+ bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR3) and 0FFh), 1, a flag
 
- movlw 4
- movwf Freq_counter
+ ;movlw 1
+ ;movlw 0x1
+ ;movwf freq_test
+ ;movwf Freq_counter
+ ;movff freq_test, Freq_counter
+ ;movlw 0
+ ;cpfsgt Freq_counter
+ ;retfie f
 DAC_Loop:
+ ;code 0x0008
  incf LATJ, F, A ; increment PORTJ
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
  movlw 0x0
@@ -10989,8 +10999,9 @@ DAC_Loop:
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* high
  movlw 0x1 | 0x2
  movwf PORTD
- decfsz Freq_counter
- goto DAC_Loop
+ ;decfsz Freq_counter
+ ;goto DAC_Loop
+ ;movff freq_test, Freq_counter
  retfie f ; fast return from interrupt
 
 DAC_Setup:
@@ -10999,16 +11010,39 @@ DAC_Setup:
  clrf LATD, A ; Clear PORTC outputs
  clrf LATJ, A ; Clear PORTJ outputs
 
+ ;movlw 1
+ ;movwf Freq_counter
+
 
 
  ; Set both ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* to high
  movlw 0x1 | 0x2
  movwf PORTD
 
- movlw 11001000B ; Set timer0 to 16-bit, Fosc/4/256
- movwf T0CON, A ; = 62.5KHz clock rate, approx 1sec rollover
- bsf ((INTCON) and 0FFh), 5, a ; Enable timer0 interrupt
- bsf ((INTCON) and 0FFh), 7, a ; Enable all interrupts
+ movlw 00000001B ; Set timer0 to 16-bit, Fosc/4/256
+ movwf T1CON ; = 62.5KHz clock rate, approx 1sec rollover
+
+
+ ;banksel CCPTMRS1
+ bcf ((CCPTMRS1) and 0FFh), 1, b
+ movlw 000000001B
+ movwf CCPTMRS1
+ ;banksel 0
+ movlw 00001011B ; Set timer0 to 16-bit, Fosc/4/256
+ movwf CCP4CON ; = 62.5KHz clock rate, approx 1sec rollover
+ movlw 0x01
+ movwf CCPR4L,F
+ movlw 0x00
+ movwf CCPR4H,F
+
+ ;banksel PIE4
+ bsf ((PIE4) and 0FFh), 1, a
+ ;banksel INTCON
+ bsf ((INTCON) and 0FFh), 7, a
+ bsf ((INTCON) and 0FFh), 6, a
+ ;banksel 0
+
+
  return
 
 LCD_delay_x4us: ; delay given in chunks of 4 microsecond in W

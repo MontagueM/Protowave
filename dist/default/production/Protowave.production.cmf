@@ -186,45 +186,48 @@ $build/default/production/Keyboard.o
 $build/default/production/DAC_Interrupt.o
 1FD98 dac_code CODE >18:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD9A dac_code CODE >19:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD9C dac_code CODE >20:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD9E dac_code CODE >26:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA2 dac_code CODE >27:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA4 dac_code CODE >28:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA6 dac_code CODE >29:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA8 dac_code CODE >31:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAA dac_code CODE >33:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAC dac_code CODE >34:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAE dac_code CODE >40:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB0 dac_code CODE >41:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB2 dac_code CODE >42:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB4 dac_code CODE >43:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB8 dac_code CODE >44:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDBC dac_code CODE >45:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDBE dac_code CODE >48:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC0 dac_code CODE >49:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC2 dac_code CODE >50:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC4 dac_code CODE >51:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC6 dac_code CODE >59:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC8 dac_code CODE >60:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCA dac_code CODE >62:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCC dac_code CODE >63:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCE dac_code CODE >64:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD0 dac_code CODE >65:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD2 dac_code CODE >66:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD4 dac_code CODE >69:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD6 dac_code CODE >70:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD8 dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDDA dac_code CODE >72:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDDC dac_code CODE >73:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDDE dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE0 dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE2 dac_code CODE >76:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE6 dac_code CODE >77:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE8 dac_code CODE >80:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDEA dac_code CODE >81:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDEC dac_code CODE >82:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDEE dac_code CODE >83:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDF0 dac_code CODE >84:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD9C dac_code CODE >21:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD9E dac_code CODE >33:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA0 dac_code CODE >35:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA2 dac_code CODE >36:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA4 dac_code CODE >42:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA6 dac_code CODE >43:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA8 dac_code CODE >47:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDAA dac_code CODE >50:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDAC dac_code CODE >51:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDAE dac_code CODE >52:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB0 dac_code CODE >53:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB2 dac_code CODE >62:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB4 dac_code CODE >63:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB6 dac_code CODE >65:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB8 dac_code CODE >66:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDBA dac_code CODE >70:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDBC dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDBE dac_code CODE >72:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC0 dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC2 dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC4 dac_code CODE >76:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC6 dac_code CODE >77:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC8 dac_code CODE >78:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDCA dac_code CODE >79:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDCC dac_code CODE >82:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDCE dac_code CODE >84:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD0 dac_code CODE >85:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD2 dac_code CODE >89:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD4 dac_code CODE >92:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD6 dac_code CODE >93:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD8 dac_code CODE >94:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDDA dac_code CODE >95:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDDC dac_code CODE >96:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDDE dac_code CODE >97:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE0 dac_code CODE >98:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE2 dac_code CODE >99:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE6 dac_code CODE >100:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE8 dac_code CODE >103:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDEA dac_code CODE >104:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDEC dac_code CODE >105:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDEE dac_code CODE >106:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDF0 dac_code CODE >107:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 $build/default/production/main.o
 0 code CODE >8:H:\Desktop\Microprocessors\Protowave\main.s
 0 code CODE >10:H:\Desktop\Microprocessors\Protowave\main.s
@@ -422,7 +425,7 @@ __Ludata_bank8 0 0 ABS 0 udata_bank8 -
 __Ludata_bank9 0 0 ABS 0 udata_bank9 -
 __Llcd_code 0 0 ABS 0 lcd_code -
 __Ldac_code 0 0 ABS 0 dac_code -
-DAC_Setup 1FDBE 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_Setup 1FDAA 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Hudata_acs 0 0 ABS 0 udata_acs -
 DAC_Int_Hi 1FD98 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Ludata_acs 0 0 ABS 0 udata_acs -
