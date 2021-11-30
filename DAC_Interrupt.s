@@ -95,9 +95,8 @@ DAC_change_frequency:
 	movwf	TBLPTRL, A	    ; load low byte to TBLPTRL
 
 	movf	DAC_freq_index, 0
-	addwfc	TBLPTRL, 0
-	addwfc	TBLPTRL, 0
-	movwf	TBLPTRL, A
+	addwf	TBLPTRL, 1
+	addwfc	TBLPTRL, 1
 	
 	tblrd*+
 	movff	TABLAT, CCPR4L
