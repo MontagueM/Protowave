@@ -16,7 +16,6 @@ LCD_cnt_l:	ds 1   ; reserve 1 byte for variable LCD_cnt_l
 LCD_cnt_h:	ds 1   ; reserve 1 byte for variable LCD_cnt_h
 LCD_cnt_ms:	ds 1   ; reserve 1 byte for ms counter
 RET_status:	ds 1
-freq_test	EQU 0x65
 psect	udata_bank4 ; reserve data anywhere in RAM (here at 0x400)
 myArray:    ds 0x40 ; reserve 128 bytes for message data
 
@@ -44,8 +43,6 @@ KB_Setup:
 KB_SetNotPressed:
     	movlw	0x0
 	movwf	KB_Pressed, A
-	movlw	0x0
-	movwf	freq_test, A
 	return
 
 KB_main:
@@ -168,8 +165,7 @@ Decode_Keypress:
 	bcf     STATUS, 0
 	addwfc	KB_Col, 0
 	movwf	KB_Fin, A
-	
-	movff	KB_Fin, freq_test
+
     return
     
 Display_Keypress:

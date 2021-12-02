@@ -12,21 +12,22 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/default/production/Keyboard.o
-kb_code CODE 0 1FDEA 1FDEA 108 1
-data CONST 0 1FD36 1FD36 10 1
+kb_code CODE 0 1FDEC 1FDEC 106 1
+data CONST 0 1FD34 1FD34 10 1
 udata_bank4 BANK4 1 400 400 40 1
-udata_acs COMRAM 1 47 47 B 1
+udata_acs COMRAM 1 0 0 B 1
 $build/default/production/DAC_Interrupt.o
-data CONST 0 1FD46 1FD46 20 1
-udata_acs COMRAM 1 0 0 47 1
-dac_code CODE 0 1FD66 1FD66 84 1
+data CONST 0 1FD44 1FD44 20 1
+udata_bank4 BANK4 1 440 440 40 1
+udata_acs COMRAM 1 B B 7 1
+dac_code CODE 0 1FD64 1FD64 88 1
 $build/default/production/main.o
 code CODE 0 0 0 18 1
 config CONFIG 4 300000 300000 E 1
 $build/default/production/config.o
 config CONFIG 4 300000 300000 E 1
 $build/default/production/LCD.o
-udata_acs COMRAM 1 52 52 6 1
+udata_acs COMRAM 1 12 12 6 1
 lcd_code CODE 0 1FEF2 1FEF2 10E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -35,22 +36,22 @@ lcd_code CODE 0 1FEF2 1FEF2 10E 1
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
 RAM 60-3FF 1
-RAM 440-F15 1
+RAM 480-F15 1
 SFR F16-FFF 1
 BANK0 60-FF 1
 BANK1 100-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
-BANK4 440-4FF 1
+BANK4 480-4FF 1
 BANK5 500-5FF 1
 BANK6 600-6FF 1
 BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST 18-1FD35 1
+CONST 18-1FD33 1
 IDLOC 200000-200007 1
-SMALLCONST 1000-1FD35 1
-CODE 18-1FD35 1
+SMALLCONST 1000-1FD33 1
+CODE 18-1FD33 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
@@ -58,10 +59,10 @@ BANK13 D00-DFF 1
 BANK14 E00-EFF 1
 BANK15 F00-F15 1
 BIGRAM 18-F15 1
-COMRAM 58-5F 1
+COMRAM 18-5F 1
 EEDATA F00000-F003FF 1
 MEDIUMCONST 1000-FFFF 1
-MEDIUMCONST 11000-1FD35 1
+MEDIUMCONST 11000-1FD33 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -76,180 +77,181 @@ MEDIUMCONST 11000-1FD35 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/production/Keyboard.o
-1FDEA kb_code CODE >35:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDEC kb_code CODE >36:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDEE kb_code CODE >37:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDF0 kb_code CODE >38:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDF2 kb_code CODE >39:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDF6 kb_code CODE >40:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDFA kb_code CODE >45:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDFC kb_code CODE >46:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FDFE kb_code CODE >47:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE00 kb_code CODE >48:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDEC kb_code CODE >34:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDEE kb_code CODE >35:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDF0 kb_code CODE >36:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDF2 kb_code CODE >37:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDF4 kb_code CODE >38:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDF8 kb_code CODE >39:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDFC kb_code CODE >44:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FDFE kb_code CODE >45:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE00 kb_code CODE >46:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE02 kb_code CODE >49:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE04 kb_code CODE >52:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE08 kb_code CODE >53:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE0C kb_code CODE >54:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE10 kb_code CODE >59:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE14 kb_code CODE >60:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE18 kb_code CODE >61:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE06 kb_code CODE >50:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE0A kb_code CODE >51:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE0E kb_code CODE >56:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE12 kb_code CODE >57:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE16 kb_code CODE >58:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE1A kb_code CODE >59:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE1C kb_code CODE >62:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE1E kb_code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE20 kb_code CODE >66:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE22 kb_code CODE >67:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE1E kb_code CODE >63:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE20 kb_code CODE >64:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE22 kb_code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE24 kb_code CODE >68:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE26 kb_code CODE >71:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE28 kb_code CODE >72:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE2A kb_code CODE >73:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE2C kb_code CODE >74:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE2E kb_code CODE >76:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE26 kb_code CODE >69:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE28 kb_code CODE >70:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE2A kb_code CODE >71:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE2C kb_code CODE >73:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE2E kb_code CODE >74:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE30 kb_code CODE >77:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE32 kb_code CODE >80:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE34 kb_code CODE >81:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE38 kb_code CODE >84:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE32 kb_code CODE >78:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE36 kb_code CODE >81:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE38 kb_code CODE >82:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE3A kb_code CODE >85:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE3C kb_code CODE >88:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE40 kb_code CODE >91:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE3E kb_code CODE >88:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE40 kb_code CODE >89:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE42 kb_code CODE >92:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE44 kb_code CODE >95:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE46 kb_code CODE >96:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE44 kb_code CODE >93:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE46 kb_code CODE >94:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE48 kb_code CODE >97:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE4A kb_code CODE >100:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE4C kb_code CODE >101:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE4E kb_code CODE >103:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE50 kb_code CODE >104:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE54 kb_code CODE >107:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE56 kb_code CODE >108:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE58 kb_code CODE >112:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE5C kb_code CODE >113:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE5E kb_code CODE >114:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE4A kb_code CODE >98:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE4C kb_code CODE >100:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE4E kb_code CODE >101:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE52 kb_code CODE >104:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE54 kb_code CODE >105:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE56 kb_code CODE >109:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE5A kb_code CODE >110:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE5C kb_code CODE >111:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE5E kb_code CODE >112:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE60 kb_code CODE >115:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE62 kb_code CODE >118:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE64 kb_code CODE >122:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE66 kb_code CODE >123:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE68 kb_code CODE >125:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE6A kb_code CODE >132:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE6C kb_code CODE >136:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE6E kb_code CODE >137:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE70 kb_code CODE >143:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE72 kb_code CODE >144:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE74 kb_code CODE >145:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE62 kb_code CODE >119:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE64 kb_code CODE >120:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE66 kb_code CODE >122:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE68 kb_code CODE >129:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE6A kb_code CODE >133:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE6C kb_code CODE >134:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE6E kb_code CODE >140:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE70 kb_code CODE >141:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE72 kb_code CODE >142:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE74 kb_code CODE >143:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE76 kb_code CODE >146:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE78 kb_code CODE >149:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE7A kb_code CODE >150:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE7C kb_code CODE >151:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE80 kb_code CODE >152:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE82 kb_code CODE >153:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE84 kb_code CODE >154:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE88 kb_code CODE >164:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE8A kb_code CODE >165:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE8C kb_code CODE >166:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE8E kb_code CODE >167:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE90 kb_code CODE >168:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE92 kb_code CODE >169:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE94 kb_code CODE >170:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE78 kb_code CODE >147:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE7A kb_code CODE >148:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE7E kb_code CODE >149:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE80 kb_code CODE >150:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE82 kb_code CODE >151:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE86 kb_code CODE >161:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE88 kb_code CODE >162:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE8A kb_code CODE >163:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE8C kb_code CODE >164:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE8E kb_code CODE >165:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE90 kb_code CODE >166:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE92 kb_code CODE >167:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE94 kb_code CODE >169:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 1FE96 kb_code CODE >172:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE9A kb_code CODE >173:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE9C kb_code CODE >178:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FE9E kb_code CODE >180:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEA2 kb_code CODE >181:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEA4 kb_code CODE >182:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEA6 kb_code CODE >183:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEA8 kb_code CODE >184:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEAA kb_code CODE >185:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEAC kb_code CODE >186:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEAE kb_code CODE >188:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEB0 kb_code CODE >189:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEB2 kb_code CODE >190:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEB4 kb_code CODE >192:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEB6 kb_code CODE >193:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEBA kb_code CODE >194:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEBE kb_code CODE >196:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEC0 kb_code CODE >197:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEC4 kb_code CODE >198:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEC6 kb_code CODE >202:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEC8 kb_code CODE >203:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FECA kb_code CODE >204:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FECE kb_code CODE >205:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FED0 kb_code CODE >206:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FED2 kb_code CODE >207:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FED4 kb_code CODE >210:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FED6 kb_code CODE >211:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FED8 kb_code CODE >212:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEDA kb_code CODE >213:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEDC kb_code CODE >214:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEDE kb_code CODE >215:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEE0 kb_code CODE >216:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEE2 kb_code CODE >217:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEE6 kb_code CODE >218:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEE8 kb_code CODE >221:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEEA kb_code CODE >222:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEEC kb_code CODE >223:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEEE kb_code CODE >224:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FEF0 kb_code CODE >225:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE98 kb_code CODE >173:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE9C kb_code CODE >174:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FE9E kb_code CODE >176:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEA2 kb_code CODE >177:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEA4 kb_code CODE >178:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEA6 kb_code CODE >179:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEA8 kb_code CODE >180:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEAA kb_code CODE >181:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEAC kb_code CODE >182:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEAE kb_code CODE >184:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEB0 kb_code CODE >185:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEB2 kb_code CODE >186:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEB4 kb_code CODE >188:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEB6 kb_code CODE >189:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEBA kb_code CODE >190:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEBE kb_code CODE >192:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEC0 kb_code CODE >193:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEC4 kb_code CODE >194:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEC6 kb_code CODE >198:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEC8 kb_code CODE >199:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FECA kb_code CODE >200:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FECE kb_code CODE >201:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FED0 kb_code CODE >202:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FED2 kb_code CODE >203:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FED4 kb_code CODE >206:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FED6 kb_code CODE >207:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FED8 kb_code CODE >208:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEDA kb_code CODE >209:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEDC kb_code CODE >210:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEDE kb_code CODE >211:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEE0 kb_code CODE >212:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEE2 kb_code CODE >213:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEE6 kb_code CODE >214:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEE8 kb_code CODE >217:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEEA kb_code CODE >218:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEEC kb_code CODE >219:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEEE kb_code CODE >220:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FEF0 kb_code CODE >221:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 $build/default/production/DAC_Interrupt.o
-1FD66 dac_code CODE >40:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD68 dac_code CODE >41:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD6A dac_code CODE >42:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD64 dac_code CODE >41:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD66 dac_code CODE >42:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD68 dac_code CODE >43:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD6A dac_code CODE >44:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD6C dac_code CODE >45:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD6E dac_code CODE >46:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD70 dac_code CODE >48:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD72 dac_code CODE >49:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD74 dac_code CODE >51:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD76 dac_code CODE >52:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD78 dac_code CODE >53:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD7A dac_code CODE >56:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD7C dac_code CODE >57:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD7E dac_code CODE >58:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD80 dac_code CODE >59:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD82 dac_code CODE >62:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD84 dac_code CODE >63:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD78 dac_code CODE >54:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD7A dac_code CODE >55:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD7C dac_code CODE >56:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD7E dac_code CODE >59:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD80 dac_code CODE >60:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD82 dac_code CODE >61:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD84 dac_code CODE >62:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD86 dac_code CODE >65:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD88 dac_code CODE >66:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD8A dac_code CODE >68:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD8C dac_code CODE >69:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD8E dac_code CODE >70:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD90 dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD92 dac_code CODE >72:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD94 dac_code CODE >73:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD96 dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD98 dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FD9A dac_code CODE >76:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD8E dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD90 dac_code CODE >72:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD92 dac_code CODE >73:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD94 dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD96 dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD98 dac_code CODE >76:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FD9A dac_code CODE >77:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD9C dac_code CODE >78:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FD9E dac_code CODE >79:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA0 dac_code CODE >80:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA0 dac_code CODE >81:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FDA2 dac_code CODE >82:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA4 dac_code CODE >86:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDA6 dac_code CODE >88:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAA dac_code CODE >89:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAC dac_code CODE >90:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDAE dac_code CODE >91:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB0 dac_code CODE >92:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB2 dac_code CODE >93:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDB4 dac_code CODE >94:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA4 dac_code CODE >83:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA6 dac_code CODE >85:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDA8 dac_code CODE >89:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDAA dac_code CODE >91:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDAE dac_code CODE >92:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB0 dac_code CODE >93:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB2 dac_code CODE >94:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDB4 dac_code CODE >95:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FDB6 dac_code CODE >96:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FDB8 dac_code CODE >97:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDBA dac_code CODE >98:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDBC dac_code CODE >99:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDBA dac_code CODE >99:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDBC dac_code CODE >100:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 1FDBE dac_code CODE >101:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC0 dac_code CODE >102:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC4 dac_code CODE >103:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDC6 dac_code CODE >104:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCA dac_code CODE >105:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCC dac_code CODE >108:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDCE dac_code CODE >109:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD0 dac_code CODE >110:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD2 dac_code CODE >111:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD4 dac_code CODE >112:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD6 dac_code CODE >113:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDD8 dac_code CODE >114:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDDA dac_code CODE >115:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDDE dac_code CODE >116:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE0 dac_code CODE >119:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE2 dac_code CODE >120:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE4 dac_code CODE >121:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE6 dac_code CODE >122:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FDE8 dac_code CODE >123:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC0 dac_code CODE >103:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC2 dac_code CODE >104:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC6 dac_code CODE >105:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDC8 dac_code CODE >106:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDCC dac_code CODE >107:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDCE dac_code CODE >110:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD0 dac_code CODE >111:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD2 dac_code CODE >112:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD4 dac_code CODE >113:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD6 dac_code CODE >114:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDD8 dac_code CODE >115:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDDA dac_code CODE >116:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDDC dac_code CODE >117:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE0 dac_code CODE >118:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE2 dac_code CODE >121:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE4 dac_code CODE >122:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE6 dac_code CODE >123:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDE8 dac_code CODE >124:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FDEA dac_code CODE >125:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 $build/default/production/main.o
 0 code CODE >8:H:\Desktop\Microprocessors\Protowave\main.s
 0 code CODE >10:H:\Desktop\Microprocessors\Protowave\main.s
@@ -383,7 +385,7 @@ $build/default/production/LCD.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 __Hspace_0 20000 0 ABS 0 - -
-__Hspace_1 440 0 ABS 0 - -
+__Hspace_1 480 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 60000E 0 ABS 0 - -
 __Hudata_bank0 0 0 ABS 0 udata_bank0 -
@@ -398,7 +400,7 @@ __Hudata_bank8 0 0 ABS 0 udata_bank8 -
 __Hudata_bank9 0 0 ABS 0 udata_bank9 -
 __Hlcd_code 0 0 ABS 0 lcd_code -
 __Hdac_code 0 0 ABS 0 dac_code -
-DAC_change_frequency 1FDA4 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_change_frequency 1FDA8 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Lkb_code 0 0 ABS 0 kb_code -
 LCD_Send_Byte_I 1FF72 0 CODE 0 lcd_code build/default/production/LCD.o
 __Hudata_bank10 0 0 ABS 0 udata_bank10 -
@@ -411,7 +413,7 @@ isa$xinst 0 0 ABS 0 - build/default/production/main.o
 __Hedata 0 0 ABS 0 edata -
 __Hudata 0 0 ABS 0 udata -
 __Hconfig 30000E 0 CONFIG 4 config -
-KB_Setup 1FDEA 0 CODE 0 kb_code build/default/production/Keyboard.o
+KB_Setup 1FDEC 0 CODE 0 kb_code build/default/production/Keyboard.o
 __Ledata 0 0 ABS 0 edata -
 __Ludata 0 0 ABS 0 udata -
 __Hcode 0 0 ABS 0 code -
@@ -420,7 +422,7 @@ __Lcode 0 0 ABS 0 code -
 __Ldata 0 0 ABS 0 data -
 __Hkb_code 0 0 ABS 0 kb_code -
 __S0 20000 0 ABS 0 - -
-__S1 440 0 ABS 0 - -
+__S1 480 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Ludata_bank10 0 0 ABS 0 udata_bank10 -
 __Ludata_bank11 0 0 ABS 0 udata_bank11 -
@@ -448,9 +450,9 @@ __Ludata_bank8 0 0 ABS 0 udata_bank8 -
 __Ludata_bank9 0 0 ABS 0 udata_bank9 -
 __Llcd_code 0 0 ABS 0 lcd_code -
 __Ldac_code 0 0 ABS 0 dac_code -
-DAC_Setup 1FD7A 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_Setup 1FD7E 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Hudata_acs 0 0 ABS 0 udata_acs -
-DAC_Int_Hi 1FD66 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_Int_Hi 1FD64 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Ludata_acs 0 0 ABS 0 udata_acs -
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
@@ -476,13 +478,13 @@ __Ludata_acs 0 0 ABS 0 udata_acs -
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-data%197 0 1FD36 1FD36 10 1
-kb_code 0 1FDEA 1FDEA 108 1
-data 0 1FD46 1FD46 20 1
-udata_bank4 1 400 400 40 1
-udata_acs 1 0 0 58 1
+data%197 0 1FD34 1FD34 10 1
+kb_code 0 1FDEC 1FDEC 106 1
+data 0 1FD44 1FD44 20 1
+udata_bank4 1 400 400 80 1
+udata_acs 1 0 0 18 1
 lcd_code 0 1FEF2 1FEF2 10E 1
-dac_code 0 1FD66 1FD66 84 1
+dac_code 0 1FD64 1FD64 88 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

@@ -10956,7 +10956,8 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 5 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\xc.inc" 2 3
-# 2 "DAC_Interrupt.s" 2
+# 1 "DAC_Interrupt.s" 2
+
 
 global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
 
@@ -10968,6 +10969,7 @@ LCD_tmp: ds 1 ; reserve 1 byte for temporary use
 LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
 Freq_counter: ds 1
 DAC_freq_index: ds 1
+psect udata_bank4
 scaleArray: ds 0x40 ; reserve 128 bytes for message data
 
 psect data
@@ -10979,16 +10981,16 @@ scaleTable:
  db 0xd3, 0x00
  db 0xbc, 0x00
  db 0xb1, 0x00
- db 0xa8, 0x00
- db 0xa8, 0x00
- db 0x1b, 0x01
- db 0xfc, 0x00
- db 0xee, 0x00
- db 0xd3, 0x00
- db 0xbc, 0x00
- db 0xb1, 0x00
- db 0xa8, 0x00
- db 0xa8, 0x00
+ db 0x9e, 0x00
+ db 0x8d, 0x00
+ db 0x8d, 0x00
+ db 0x7e, 0x00
+ db 0x76, 0x00
+ db 0x69, 0x00
+ db 0x5e, 0x00
+ db 0x58, 0x00
+ db 0x4f, 0x00
+ db 0x46, 0x00
  scaleTable_l EQU 32 ; length of data
  align 2
 
@@ -10998,7 +11000,9 @@ DAC_Int_Hi:
  btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 4 interrupt
  retfie f ; if not then return
  bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR4) and 0FFh), 1, a flag
-
+ movlw 0xFF
+ cpfslt DAC_freq_index, 0
+ retfie f
 DAC_Loop:
  incf LATJ, F, A ; increment PORTJ
  incf LATJ, F, A
@@ -11052,9 +11056,8 @@ DAC_change_frequency:
  movwf TBLPTRL, A ; load low byte to TBLPTRL
 
  movf DAC_freq_index, 0
- addwfc TBLPTRL, 0
- addwfc TBLPTRL, 0
- movwf TBLPTRL, A
+ addwf TBLPTRL, 1
+ addwfc TBLPTRL, 1
 
  tblrd*+
  movff TABLAT, CCPR4L
