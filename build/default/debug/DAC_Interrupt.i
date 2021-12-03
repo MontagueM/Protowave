@@ -10960,18 +10960,14 @@ ENDM
 
 
 global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
-
+extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup
 psect udata_acs ; named variables in access ram
 LCD_cnt_l: ds 1 ; reserve 1 byte for variable LCD_cnt_l
 LCD_cnt_h: ds 1 ; reserve 1 byte for variable LCD_cnt_h
 LCD_cnt_ms: ds 1 ; reserve 1 byte for ms counter
 LCD_tmp: ds 1 ; reserve 1 byte for temporary use
 LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
-Freq_counter: ds 1
-DAC_freq_index EQU 0x65
-psect udata_bank4
-scaleArray: ds 0x40 ; reserve 128 bytes for message data
-
+DAC_freq_index: ds 1
 psect data
 
 scaleTable:
@@ -10995,17 +10991,15 @@ scaleTable:
  align 2
 
 psect dac_code, class=CODE
-
 DAC_Int_Hi:
  btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 4 interrupt
  retfie f ; if not then return
  bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR4) and 0FFh), 1, a flag
- movlw 0xFF
- cpfslt DAC_freq_index, 0
- retfie f
+
 DAC_Loop:
- incf LATJ, F, A ; increment PORTJ
- incf LATJ, F, A
+ ;call Do_Sawtooth
+ call Do_Square
+
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
  movlw 0x0
  movwf PORTD
@@ -11041,13 +11035,14 @@ DAC_Setup:
  bsf ((INTCON) and 0FFh), 7, a
  bsf ((INTCON) and 0FFh), 6, a
 
+ call Square_Setup
+ ;call Sawtooth_Setup
  return
 
 DAC_change_frequency:
  ; Take target from W
  movwf DAC_freq_index
 
- lfsr 0, scaleArray ; Load FSR0 with address in RAM
  movlw low highword(scaleTable) ; address of data in PM
  movwf TBLPTRU, A ; load upper bits to TBLPTRU
  movlw high(scaleTable) ; address of data in PM

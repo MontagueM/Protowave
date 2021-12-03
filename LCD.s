@@ -1,14 +1,17 @@
 #include <xc.inc>
 
-global  LCD_Setup, LCD_Write_Message, LCD_Send_Byte_I
+global  LCD_Setup, LCD_delay_ms, LCD_Write_Message, LCD_Send_Byte_I, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms
 
 psect	udata_acs   ; named variables in access ram
-LCD_cnt_l:	ds 1   ; reserve 1 byte for variable LCD_cnt_l
-LCD_cnt_h:	ds 1   ; reserve 1 byte for variable LCD_cnt_h
-LCD_cnt_ms:	ds 1   ; reserve 1 byte for ms counter
-LCD_tmp:	ds 1   ; reserve 1 byte for temporary use
-LCD_counter:	ds 1   ; reserve 1 byte for counting through nessage
+LCD_cnt_l:	ds 1	; reserve 1 byte for variable LCD_cnt_l
+LCD_cnt_h:	ds 1	; reserve 1 byte for variable LCD_cnt_h
+LCD_cnt_ms:	ds 1	; reserve 1 byte for ms counter
+LCD_tmp:	ds 1	; reserve 1 byte for temporary use
+LCD_counter:	ds 1	; reserve 1 byte for counting through nessage
 TwoLineCounter: ds 1
+    
+PSECT	udata_acs_ovr,space=1,ovrld,class=COMRAM
+LCD_hex_tmp:	ds 1    ; reserve 1 byte for variable LCD_hex_tmp
 
 	LCD_E	EQU 5	; LCD enable bit
     	LCD_RS	EQU 4	; LCD register select bit
@@ -45,10 +48,38 @@ LCD_Setup:
 	call	LCD_Send_Byte_I
 	movlw	10		; wait 40us
 	call	LCD_delay_x4us
+	
 	movlw	0x10
 	movwf	TwoLineCounter, A
 	return
 
+LCD_Clear_Display: 
+	movlw	00000001B	; display clear
+	call	LCD_Send_Byte_I
+	movlw	2		; wait 2ms
+	call	LCD_delay_ms
+	movlw	00000110B	; entry mode incr by 1 no shift
+	call	LCD_Send_Byte_I
+	movlw	10		; wait 40us
+	call	LCD_delay_x4us
+	return	
+	
+LCD_Write_Hex:			; Writes byte stored in W as hex
+	movwf	LCD_hex_tmp, A
+	swapf	LCD_hex_tmp, W, A	; high nibble first
+	call	LCD_Hex_Nib
+	movf	LCD_hex_tmp, W, A	; then low nibble
+LCD_Hex_Nib:			; writes low nibble as hex character
+	andlw	0x0F
+	movwf	LCD_tmp, A
+	movlw	0x0A
+	cpfslt	LCD_tmp, A
+	addlw	0x07		; number is greater than 9 
+	addlw	0x26
+	addwf	LCD_tmp, W, A
+	call	LCD_Send_Byte_D ; write out ascii
+	return	
+	
 LCD_Write_Message:	    ; Message stored at FSR2, length stored in W
 	movwf   LCD_counter, A
 LCD_Loop_message:
@@ -62,8 +93,10 @@ LCD_Loop_message:
 	call	LCD_delay_ms
 	dcfsnz	TwoLineCounter, A
 	bra	SetTwoLines
+	;movlw	5000
+	;call LCD_delay_ms
 	return
-
+	
 SetTwoLines:
 	movlw	11000000B
 	call	LCD_Send_Byte_I
@@ -147,4 +180,4 @@ lcdlp1:	decf 	LCD_cnt_l, F, A	; no carry when 0x00 -> 0xff
 	return			; carry reset so return
 
 
-    end
+end
