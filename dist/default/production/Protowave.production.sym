@@ -11,14 +11,15 @@ __Hudata_bank13 0 0 ABS 0
 __Ludata_bank13 0 0 ABS 0
 __Hconfig 30000E 0 CONFIG 4
 __Lconfig 0 0 CONFIG 4
-Do_Square 1FD64 0 CODE 0
+ADC_Close 1FD3E 0 CODE 0
+Do_Square 1FD60 0 CODE 0
 LCD_Clear_Display 1FF14 0 CODE 0
 __Hudata_acs 0 0 ABS 0
 __Ludata_acs 0 0 ABS 0
 __Hkb_code 0 0 ABS 0
 __Lkb_code 0 0 ABS 0
 DAC_Setup 1FD9E 0 CODE 0
-ADC_Setup 1FD1E 0 CODE 0
+ADC_Setup 1FD28 0 CODE 0
 LCD_Setup 1FEBA 0 CODE 0
 DAC_change_frequency 1FDCC 0 CODE 0
 isa$xinst 0 0 ABS 0
@@ -46,10 +47,10 @@ __Hudata_bank14 0 0 ABS 0
 __Ludata_bank14 0 0 ABS 0
 __Hudata_acs_ovr 18 0 COMRAM 1
 __Ludata_acs_ovr 17 0 COMRAM 1
-Sawtooth_Setup 1FD60 0 CODE 0
+Sawtooth_Setup 1FD5C 0 CODE 0
 LCD_Send_Byte_I 1FF72 0 CODE 0
 LCD_delay_ms 1FFD4 0 CODE 0
-ADC_Read 1FD34 0 CODE 0
+ADC_Read 1FD4C 0 CODE 0
 __Hedata 0 0 ABS 0
 __Ledata 0 0 ABS 0
 __Hudata 0 0 ABS 0
@@ -68,7 +69,7 @@ __Lspace_3 0 0 ABS 0
 __Hspace_4 60000E 0 ABS 0
 __Lspace_4 0 0 ABS 0
 Square_Setup 1FD78 0 CODE 0
-Do_Sawtooth 1FD5C 0 CODE 0
+Do_Sawtooth 1FD58 0 CODE 0
 __Hudata_bank2 0 0 ABS 0
 __Ludata_bank2 0 0 ABS 0
 __Hwave_code 0 0 ABS 0
@@ -78,6 +79,7 @@ __Ludata_bank12 0 0 ABS 0
 __Hudata_bank8 0 0 ABS 0
 __Ludata_bank8 0 0 ABS 0
 LCD_Send_Byte_D 1FF8E 0 CODE 0
+Square_duty_cycle 16 0 COMRAM 1
 __Hudata_bank15 0 0 ABS 0
 __Ludata_bank15 0 0 ABS 0
 __Hudata_bank3 0 0 ABS 0
@@ -89,21 +91,22 @@ udata_acs 0 17 COMRAM 0 1
 lcd_code 1FEBA 1FFFF CODE 1FEBA 0
 kb_code 1FDEE 1FEB9 CODE 1FDEE 0
 dac_code 1FD8A 1FDED CODE 1FD8A 0
-wave_code 1FD5C 1FD89 CODE 1FD5C 0
-data 1FD3C 1FD5B CONST 1FD3C 0
-adc_code 1FD1E 1FD3B CODE 1FD1E 0
-data%255 1FD0E 1FD1D CONST 1FD0E 0
+wave_code 1FD58 1FD89 CODE 1FD58 0
+adc_code 1FD28 1FD57 CODE 1FD28 0
+data 1FD08 1FD27 CONST 1FD08 0
+data%257 1FCF8 1FD07 CONST 1FCF8 0
 %locals
 build/default/production/main.o
 C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f87k22.inc
 main.s
-8 0 0 CODE 0
-10 0 0 CODE 0
-12 4 0 CODE 0
-13 8 0 CODE 0
-16 C 0 CODE 0
+9 0 0 CODE 0
+11 0 0 CODE 0
+13 4 0 CODE 0
+14 8 0 CODE 0
+17 C 0 CODE 0
 18 10 0 CODE 0
 20 14 0 CODE 0
+22 18 0 CODE 0
 build/default/production/DAC_Interrupt.o
 C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f87k22.inc
 DAC_Interrupt.s
@@ -383,41 +386,51 @@ C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f87k22.inc
 build/default/production/ADC.o
 C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f87k22.inc
 ADC.s
-8 1FD1E 0 CODE 0
-9 1FD20 0 CODE 0
-10 1FD22 0 CODE 0
-11 1FD24 0 CODE 0
-12 1FD26 0 CODE 0
-13 1FD28 0 CODE 0
-14 1FD2A 0 CODE 0
-15 1FD2C 0 CODE 0
-16 1FD2E 0 CODE 0
-17 1FD30 0 CODE 0
-18 1FD32 0 CODE 0
-21 1FD34 0 CODE 0
-24 1FD36 0 CODE 0
-25 1FD38 0 CODE 0
-26 1FD3A 0 CODE 0
+8 1FD28 0 CODE 0
+9 1FD2A 0 CODE 0
+10 1FD2C 0 CODE 0
+11 1FD2E 0 CODE 0
+12 1FD30 0 CODE 0
+13 1FD32 0 CODE 0
+14 1FD34 0 CODE 0
+15 1FD36 0 CODE 0
+16 1FD38 0 CODE 0
+17 1FD3A 0 CODE 0
+20 1FD3C 0 CODE 0
+23 1FD3E 0 CODE 0
+24 1FD40 0 CODE 0
+25 1FD42 0 CODE 0
+26 1FD44 0 CODE 0
+27 1FD46 0 CODE 0
+28 1FD48 0 CODE 0
+29 1FD4A 0 CODE 0
+32 1FD4C 0 CODE 0
+33 1FD4E 0 CODE 0
+40 1FD50 0 CODE 0
+42 1FD52 0 CODE 0
+43 1FD54 0 CODE 0
+44 1FD56 0 CODE 0
 build/default/production/Waveforms.o
 C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\proc\\pic18f87k22.inc
 Waveforms.s
-16 1FD5C 0 CODE 0
-17 1FD5E 0 CODE 0
-20 1FD60 0 CODE 0
-21 1FD62 0 CODE 0
-24 1FD64 0 CODE 0
-25 1FD66 0 CODE 0
-26 1FD68 0 CODE 0
-27 1FD6A 0 CODE 0
-28 1FD6E 0 CODE 0
-29 1FD70 0 CODE 0
-30 1FD72 0 CODE 0
-31 1FD76 0 CODE 0
-34 1FD78 0 CODE 0
-35 1FD7A 0 CODE 0
-36 1FD7C 0 CODE 0
-37 1FD7E 0 CODE 0
-38 1FD80 0 CODE 0
-39 1FD82 0 CODE 0
-40 1FD84 0 CODE 0
-41 1FD88 0 CODE 0
+16 1FD58 0 CODE 0
+17 1FD5A 0 CODE 0
+20 1FD5C 0 CODE 0
+21 1FD5E 0 CODE 0
+25 1FD60 0 CODE 0
+28 1FD64 0 CODE 0
+29 1FD66 0 CODE 0
+30 1FD68 0 CODE 0
+31 1FD6A 0 CODE 0
+32 1FD6E 0 CODE 0
+33 1FD70 0 CODE 0
+34 1FD72 0 CODE 0
+35 1FD76 0 CODE 0
+38 1FD78 0 CODE 0
+39 1FD7A 0 CODE 0
+40 1FD7C 0 CODE 0
+41 1FD7E 0 CODE 0
+42 1FD80 0 CODE 0
+43 1FD82 0 CODE 0
+44 1FD84 0 CODE 0
+45 1FD88 0 CODE 0

@@ -1,7 +1,7 @@
 #include <xc.inc>
 	
-global	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup
-    
+global	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, Square_duty_cycle
+extrn	ADC_Read, ADC_Setup, ADC_Close
 psect	udata_acs   ; named variables in access ram
 Square_counter: ds 1
 Square_high:	ds 1
@@ -21,6 +21,10 @@ Sawtooth_Setup:
 	return
 	
 Do_Square:
+	;call	ADC_Setup
+	call	ADC_Read
+	;call	ADC_Close
+    
 	incf	Square_counter, F, A
 	movf	Square_duty_cycle, 0
 	cpfslt	Square_counter, A
@@ -31,7 +35,7 @@ Do_Square:
 	return
 
 Square_Setup:
-	movlw	200
+	movlw	128
 	movwf	Square_duty_cycle, A
 	movlw	0xFF
 	movwf	Square_high, A
