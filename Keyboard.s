@@ -1,6 +1,6 @@
 #include <xc.inc>
     
-global	KB_Setup
+global	KB_Setup, KB_main, RET_status
 extrn	LCD_Write_Message, LCD_Setup, LCD_delay_ms
 extrn	DAC_change_frequency
 psect	udata_acs   ; reserve data space in access ram
@@ -28,27 +28,21 @@ KB_Setup:
 	bsf	EEPGD 	; access Flash program memory
 	movlw	3
 	movwf	KB_Fix
-	;call	LCD_Setup
-	goto	KB_main
+	return
 
 	; ******* Main programme ****************************************
 
-KB_SetNotPressed:
-    	movlw	0x0
-	movwf	KB_Pressed, A
-	return
 
 KB_main:
-	call	KB_SetNotPressed
 	call    Acquire_Keypress
 	call    Check_Key_Pressed
-	;movwf	RET_status
-	;decfsz	RET_status
-	;return
+	movwf	RET_status, A
+	movlw	0x0
+	cpfseq	RET_status, 0
+	return
 	; If key pressed and is not prev key, continue
 	call    Decode_Keypress
 	call    Display_Keypress
-	goto	KB_main
 	return
     
 Acquire_Keypress:
@@ -112,14 +106,13 @@ Check_Key_Pressed:
 	movlw	0x00
 	cpfsgt	KB_Col
 	;retlw	0
-	bra	KB_SetNotPressed
+	retlw	1
 	
 	; are we already pressed
 	;movlw	0x00
 	;cpfseq	KB_Pressed
 	;retlw	0
-	
-	retlw	1
+	retlw	0
     
 Decode_Keypress:
 	; Set pressed

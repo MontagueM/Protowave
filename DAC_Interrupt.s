@@ -1,7 +1,7 @@
 #include <xc.inc>
 	
 global	DAC_Setup, DAC_Int_Hi, DAC_change_frequency
-extrn	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup
+extrn	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
 psect	udata_acs   ; named variables in access ram
 LCD_cnt_l:	ds 1   ; reserve 1 byte for variable LCD_cnt_l
 LCD_cnt_h:	ds 1   ; reserve 1 byte for variable LCD_cnt_h
@@ -39,6 +39,10 @@ DAC_Int_Hi:
 
 DAC_Loop:
 	;call Do_Sawtooth
+	movlw	0x0
+	cpfseq	RET_status, 0
+	retfie	f
+	
 	call Do_Square
 	
 	; Set CS* and WR* low
