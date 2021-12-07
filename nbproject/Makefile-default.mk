@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s
+SOURCEFILES_QUOTED_IF_SPACED=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DAC_Interrupt.o.d ${OBJECTDIR}/Keyboard.o.d ${OBJECTDIR}/LCD.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Waveforms.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DAC_Interrupt.o.d ${OBJECTDIR}/Keyboard.o.d ${OBJECTDIR}/LCD.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Waveforms.o.d ${OBJECTDIR}/LCD_Helper.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o
 
 # Source Files
-SOURCEFILES=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s
+SOURCEFILES=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s
 
 
 
@@ -150,6 +150,14 @@ ${OBJECTDIR}/Waveforms.o: Waveforms.s  nbproject/Makefile-${CND_CONF}.mk
 	Waveforms.s \
 	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
+${OBJECTDIR}/LCD_Helper.o: LCD_Helper.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/LCD_Helper.o 
+	${MP_AS} -mcpu=PIC18F87K22 -c \
+	-o ${OBJECTDIR}/LCD_Helper.o \
+	LCD_Helper.s \
+	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
 else
 ${OBJECTDIR}/main.o: main.s  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -205,6 +213,14 @@ ${OBJECTDIR}/Waveforms.o: Waveforms.s  nbproject/Makefile-${CND_CONF}.mk
 	${MP_AS} -mcpu=PIC18F87K22 -c \
 	-o ${OBJECTDIR}/Waveforms.o \
 	Waveforms.s \
+	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
+${OBJECTDIR}/LCD_Helper.o: LCD_Helper.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/LCD_Helper.o 
+	${MP_AS} -mcpu=PIC18F87K22 -c \
+	-o ${OBJECTDIR}/LCD_Helper.o \
+	LCD_Helper.s \
 	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
 endif

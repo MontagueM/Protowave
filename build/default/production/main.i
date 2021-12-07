@@ -10979,5 +10979,6 @@ init:
 
 start:
  call KB_main
+ call LCD_main
  goto start
  end rst

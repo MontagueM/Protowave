@@ -19,6 +19,7 @@
       <itemPath>config.s</itemPath>
       <itemPath>ADC.s</itemPath>
       <itemPath>Waveforms.s</itemPath>
+      <itemPath>LCD_Helper.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
