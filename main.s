@@ -17,10 +17,8 @@ init:
     	call	DAC_Setup
 	call	ADC_Setup
 	call	KB_Setup
-	;call	LCD_Setup
+
 start:	
 	call	KB_main
-	;call	LCD_main
-	;goto	$	; Sit in infinite loop
 	goto	start
 	end	rst

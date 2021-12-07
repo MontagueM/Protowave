@@ -1,6 +1,6 @@
 #include <xc.inc>
 	
-global	DAC_Setup, DAC_Int_Hi, DAC_change_frequency, LCD_delay_ms
+global	DAC_Setup, DAC_Int_Hi, DAC_change_frequency
 extrn	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
 psect	udata_acs   ; named variables in access ram
 DAC_freq_index: ds 1
@@ -54,20 +54,15 @@ DAC_Int_Hi:
 	// Check if we need to do a setup
 	movlw	0x40
 	andwf	PORTD, W, A
-	
-	;cpfseq	bIs_Saw, A
-	;call	FlipWaveformType
 
 	movlw	0x0
 	cpfseq	RET_status, 0
 	retfie	f
     
-    	;movlw	0x0
-	;cpfseq	bIs_Saw, 0
+	// Depending on the bit set for PORTD we gen corresponding waveform
 	btfsc	PORTD, 6, A
 	call	Do_Sawtooth
-	;movlw	0x40
-	;cpfseq	bIs_Saw, 0
+
 	btfss	PORTD, 6, A
 	call	Do_Square
 	
@@ -78,23 +73,6 @@ DAC_Int_Hi:
 	movlw	0x1 | 0x2
 	movwf	PORTD
 	retfie	f		; fast return from interrupt
-
-;FlipWaveformType:
-;	// Flip setting
-;	;movlw	0x40
-;	;xorwf	bIs_Saw, 1, 0
-;	btg	bIs_Saw, 6, A
-;    
-;	// What setup to do
-;	;movlw	0x0
-;	;cpfseq	bIs_Saw, 0
-;	call	Sawtooth_Setup
-;	
-;	;movlw	0x40
-;	;cpfseq	bIs_Saw, 0
-;	;call	Square_Setup
-;	
-;	return
     
 DAC_Setup:
 	clrf	TRISD, A	; Control line set all outputs for WR*
@@ -148,26 +126,24 @@ ReadMinorScale:
 	return
 
 DAC_change_frequency:
-	; Take target from W
+	// Take target from W
 	movwf	DAC_freq_index
 	
-	// Which scale to read
+	// Which scale to read based on bit 5
 	btfsc	PORTD, 5, A
 	call	ReadMajorScale
 	
-	;movlw	0x20
-	;cpfseq	LCD_tmp, 0
 	btfss	PORTD, 5, A
 	call	ReadMinorScale
 	
-	// Multiply by two
+	// Multiply by two and add to TBLPTR
 	rlncf	DAC_freq_index, W, A
 	addwf	TBLPTRL, F
 	movlw	0x0
 	addwfc	TBLPTRH, F
 	addwfc	TBLPTRU, F
 	
-	
+	// Read backwards, H then L (because yes)
 	tblrd*+
 	tblrd*-
 	movff	TABLAT, CCPR4H

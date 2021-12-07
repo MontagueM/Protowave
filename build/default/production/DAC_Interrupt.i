@@ -10959,7 +10959,7 @@ ENDM
 # 1 "DAC_Interrupt.s" 2
 
 
-global DAC_Setup, DAC_Int_Hi, DAC_change_frequency, LCD_delay_ms
+global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
 extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
 psect udata_acs ; named variables in access ram
 DAC_freq_index: ds 1
@@ -11014,19 +11014,14 @@ DAC_Int_Hi:
  movlw 0x40
  andwf PORTD, W, A
 
- ;cpfseq bIs_Saw, A
- ;call FlipWaveformType
-
  movlw 0x0
  cpfseq RET_status, 0
  retfie f
 
-     ;movlw 0x0
- ;cpfseq bIs_Saw, 0
+
  btfsc PORTD, 6, A
  call Do_Sawtooth
- ;movlw 0x40
- ;cpfseq bIs_Saw, 0
+
  btfss PORTD, 6, A
  call Do_Square
 
@@ -11037,23 +11032,6 @@ DAC_Int_Hi:
  movlw 0x1 | 0x2
  movwf PORTD
  retfie f ; fast return from interrupt
-
-;FlipWaveformType:
-;
-; ;movlw 0x40
-; ;xorwf bIs_Saw, 1, 0
-; btg bIs_Saw, 6, A
-;
-;
-; ;movlw 0x0
-; ;cpfseq bIs_Saw, 0
-; call Sawtooth_Setup
-;
-; ;movlw 0x40
-; ;cpfseq bIs_Saw, 0
-; ;call Square_Setup
-;
-; return
 
 DAC_Setup:
  clrf TRISD, A ; Control line set all outputs for ((EECON1) and 0FFh), 1, a*
@@ -11107,15 +11085,13 @@ ReadMinorScale:
  return
 
 DAC_change_frequency:
- ; Take target from W
+
  movwf DAC_freq_index
 
 
  btfsc PORTD, 5, A
  call ReadMajorScale
 
- ;movlw 0x20
- ;cpfseq LCD_tmp, 0
  btfss PORTD, 5, A
  call ReadMinorScale
 

@@ -29,16 +29,11 @@ ADC_Close:
 	return
 	
 ADC_Read:
-	btfsc   GO	    ; check to see if finished
+	// If we're still set return and keep going
+	btfsc   GO
 	return
-	;read new values of address
-	    	
-	;swapf	ADRESL, 1
-	;movlw	0x0F
-	;andwf	ADRESL, 1
-	;swapf	ADRESH, 1
+	// If we're clear read the top 8 bits and set to read again when possible
 	movf	ADRESH, 0
-	;addwf	ADRESL, 0
 	movwf	Square_duty_cycle, A
 	bsf	GO
 	return
