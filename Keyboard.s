@@ -105,14 +105,9 @@ Check_Key_Pressed:
 	; check KB_val is not zero
 	movlw	0x00
 	cpfsgt	KB_Col
-	;retlw	0
-	retlw	1
+	retlw	1 ; fail
 	
-	; are we already pressed
-	;movlw	0x00
-	;cpfseq	KB_Pressed
-	;retlw	0
-	retlw	0
+	retlw	0 ; success
     
 Decode_Keypress:
 	; Set pressed
