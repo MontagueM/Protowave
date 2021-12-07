@@ -10962,16 +10962,11 @@ ENDM
 global DAC_Setup, DAC_Int_Hi, DAC_change_frequency, LCD_delay_ms
 extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
 psect udata_acs ; named variables in access ram
-LCD_cnt_l: ds 1 ; reserve 1 byte for variable LCD_cnt_l
-LCD_cnt_h: ds 1 ; reserve 1 byte for variable LCD_cnt_h
-LCD_cnt_ms: ds 1 ; reserve 1 byte for ms counter
-LCD_tmp: ds 1 ; reserve 1 byte for temporary use
-LCD_counter: ds 1 ; reserve 1 byte for counting through nessage
 DAC_freq_index: ds 1
 bIs_Saw: ds 1
 psect data
 
-scaleTable:
+scaleTableMinor:
  db 0x1b, 0x01
  db 0xfc, 0x00
  db 0xee, 0x00
@@ -10988,7 +10983,25 @@ scaleTable:
  db 0x58, 0x00
  db 0x4f, 0x00
  db 0x46, 0x00
- scaleTable_l EQU 32 ; length of data
+ align 2
+
+scaleTableMajor:
+ db 0x1b, 0x01
+ db 0xfc, 0x00
+ db 0xe0, 0x00
+ db 0xd3, 0x00
+ db 0xbc, 0x00
+ db 0xa8, 0x00
+ db 0x96, 0x00
+ db 0x8d, 0x00
+ db 0x8d, 0x00
+ db 0x7e, 0x00
+ db 0x70, 0x00
+ db 0x69, 0x00
+ db 0x5e, 0x00
+ db 0x53, 0x00
+ db 0x4a, 0x00
+ db 0x46, 0x00
  align 2
 
 psect dac_code, class=CODE
@@ -10998,34 +11011,23 @@ DAC_Int_Hi:
  bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR4) and 0FFh), 1, a flag
 
 
- movff PORTD, LCD_tmp
  movlw 0x40
+ andwf PORTD, W, A
 
- andwf LCD_tmp, 1, 0
-
- movf bIs_Saw, 0
- cpfseq LCD_tmp, 0
- call FlipWaveformType
+ ;cpfseq bIs_Saw, A
+ ;call FlipWaveformType
 
  movlw 0x0
  cpfseq RET_status, 0
  retfie f
 
- ;movlw 0x40
- ;andwf PORTD, 1
-
- ;movlw 0x0
- ;cpfseq PORTD, 0
- ;call Play_Saw
-
- ;movlw 0x1
- ;cpfseq PORTD, 0
-
-     movlw 0x0
- cpfseq bIs_Saw, 0
+     ;movlw 0x0
+ ;cpfseq bIs_Saw, 0
+ btfsc PORTD, 6, A
  call Do_Sawtooth
- movlw 0x40
- cpfseq bIs_Saw, 0
+ ;movlw 0x40
+ ;cpfseq bIs_Saw, 0
+ btfss PORTD, 6, A
  call Do_Square
 
  ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
@@ -11036,21 +11038,22 @@ DAC_Int_Hi:
  movwf PORTD
  retfie f ; fast return from interrupt
 
-FlipWaveformType:
-
- movlw 0x40
- xorwf bIs_Saw, 1, 0
-
-
- movlw 0x0
- cpfseq bIs_Saw, 0
- call Sawtooth_Setup
-
- movlw 0x40
- cpfseq bIs_Saw, 0
- call Square_Setup
-
- return
+;FlipWaveformType:
+;
+; ;movlw 0x40
+; ;xorwf bIs_Saw, 1, 0
+; btg bIs_Saw, 6, A
+;
+;
+; ;movlw 0x0
+; ;cpfseq bIs_Saw, 0
+; call Sawtooth_Setup
+;
+; ;movlw 0x40
+; ;cpfseq bIs_Saw, 0
+; ;call Square_Setup
+;
+; return
 
 DAC_Setup:
  clrf TRISD, A ; Control line set all outputs for ((EECON1) and 0FFh), 1, a*
@@ -11082,27 +11085,53 @@ DAC_Setup:
 
  movlw 0x0
  movwf bIs_Saw, A ; Default to square
+ call Square_Setup
+ return
+
+ReadMajorScale:
+     movlw low highword(scaleTableMajor) ; address of data in PM
+ movwf TBLPTRU, A ; load upper bits to TBLPTRU
+ movlw high(scaleTableMajor) ; address of data in PM
+ movwf TBLPTRH, A ; load high byte to TBLPTRH
+ movlw low(scaleTableMajor) ; address of data in PM
+ movwf TBLPTRL, A ; load low byte to TBLPTRL
+ return
+
+ReadMinorScale:
+     movlw low highword(scaleTableMinor) ; address of data in PM
+ movwf TBLPTRU, A ; load upper bits to TBLPTRU
+ movlw high(scaleTableMinor) ; address of data in PM
+ movwf TBLPTRH, A ; load high byte to TBLPTRH
+ movlw low(scaleTableMinor) ; address of data in PM
+ movwf TBLPTRL, A ; load low byte to TBLPTRL
  return
 
 DAC_change_frequency:
  ; Take target from W
  movwf DAC_freq_index
 
- movlw low highword(scaleTable) ; address of data in PM
- movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scaleTable) ; address of data in PM
- movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scaleTable) ; address of data in PM
- movwf TBLPTRL, A ; load low byte to TBLPTRL
 
- movf DAC_freq_index, 0
- addwf TBLPTRL, 1
- addwfc TBLPTRL, 1
+ btfsc PORTD, 5, A
+ call ReadMajorScale
+
+ ;movlw 0x20
+ ;cpfseq LCD_tmp, 0
+ btfss PORTD, 5, A
+ call ReadMinorScale
+
+
+ rlncf DAC_freq_index, W, A
+ addwf TBLPTRL, F
+ movlw 0x0
+ addwfc TBLPTRH, F
+ addwfc TBLPTRU, F
+
 
  tblrd*+
- movff TABLAT, CCPR4L
- tblrd*+
+ tblrd*-
  movff TABLAT, CCPR4H
+ tblrd*
+ movff TABLAT, CCPR4L
  return
 
  end
