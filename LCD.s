@@ -1,7 +1,7 @@
 #include <xc.inc>
 
-global  LCD_Setup, LCD_delay_ms, LCD_Write_Message, LCD_Send_Byte_I, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms
-
+global  LCD_Setup, LCD_delay_ms, LCD_Write_Message, LCD_Send_Byte_I, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms, LCD_Clear_Display2
+global	SetTwoLines
 psect	udata_acs   ; named variables in access ram
 LCD_cnt_l:	ds 1	; reserve 1 byte for variable LCD_cnt_l
 LCD_cnt_h:	ds 1	; reserve 1 byte for variable LCD_cnt_h
@@ -63,6 +63,11 @@ LCD_Clear_Display:
 	movlw	10		; wait 40us
 	call	LCD_delay_x4us
 	return	
+
+LCD_Clear_Display2:
+	movlw	10000000B
+	call	LCD_Send_Byte_I
+	return
 	
 LCD_Write_Hex:			; Writes byte stored in W as hex
 	movwf	LCD_hex_tmp, A
@@ -84,12 +89,11 @@ LCD_Write_Message:	    ; Message stored at FSR2, length stored in W
 	movwf   LCD_counter, A
 LCD_Loop_message:
 	tblrd*+			; one byte from PM to TABLAT, increment TBLPRT
-	movff	TABLAT, POSTINC0; move data from TABLAT to (FSR0), inc FSR0	
-	movf    POSTINC2, W, A
+	movf    TABLAT, W, A
 	call    LCD_Send_Byte_D
 	decfsz  LCD_counter, A
 	bra	LCD_Loop_message
-	movlw	10
+	movlw	1
 	call	LCD_delay_ms
 	dcfsnz	TwoLineCounter, A
 	bra	SetTwoLines
@@ -100,6 +104,9 @@ LCD_Loop_message:
 SetTwoLines:
 	movlw	11000000B
 	call	LCD_Send_Byte_I
+	
+	movlw	1
+	call	LCD_Write_Message
 	return
 	
 LCD_Send_Byte_I:	    ; Transmits byte stored in W to instruction reg
