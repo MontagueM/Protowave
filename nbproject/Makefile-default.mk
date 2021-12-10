@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s
+SOURCEFILES_QUOTED_IF_SPACED=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s ADC_LCD_Display.s
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DAC_Interrupt.o.d ${OBJECTDIR}/Keyboard.o.d ${OBJECTDIR}/LCD.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Waveforms.o.d ${OBJECTDIR}/LCD_Helper.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o ${OBJECTDIR}/ADC_LCD_Display.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/DAC_Interrupt.o.d ${OBJECTDIR}/Keyboard.o.d ${OBJECTDIR}/LCD.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/Waveforms.o.d ${OBJECTDIR}/LCD_Helper.o.d ${OBJECTDIR}/ADC_LCD_Display.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/DAC_Interrupt.o ${OBJECTDIR}/Keyboard.o ${OBJECTDIR}/LCD.o ${OBJECTDIR}/config.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/Waveforms.o ${OBJECTDIR}/LCD_Helper.o ${OBJECTDIR}/ADC_LCD_Display.o
 
 # Source Files
-SOURCEFILES=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s
+SOURCEFILES=main.s DAC_Interrupt.s Keyboard.s LCD.s config.s ADC.s Waveforms.s LCD_Helper.s ADC_LCD_Display.s
 
 
 
@@ -158,6 +158,14 @@ ${OBJECTDIR}/LCD_Helper.o: LCD_Helper.s  nbproject/Makefile-${CND_CONF}.mk
 	LCD_Helper.s \
 	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
+${OBJECTDIR}/ADC_LCD_Display.o: ADC_LCD_Display.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADC_LCD_Display.o 
+	${MP_AS} -mcpu=PIC18F87K22 -c \
+	-o ${OBJECTDIR}/ADC_LCD_Display.o \
+	ADC_LCD_Display.s \
+	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
 else
 ${OBJECTDIR}/main.o: main.s  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -221,6 +229,14 @@ ${OBJECTDIR}/LCD_Helper.o: LCD_Helper.s  nbproject/Makefile-${CND_CONF}.mk
 	${MP_AS} -mcpu=PIC18F87K22 -c \
 	-o ${OBJECTDIR}/LCD_Helper.o \
 	LCD_Helper.s \
+	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
+	
+${OBJECTDIR}/ADC_LCD_Display.o: ADC_LCD_Display.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADC_LCD_Display.o 
+	${MP_AS} -mcpu=PIC18F87K22 -c \
+	-o ${OBJECTDIR}/ADC_LCD_Display.o \
+	ADC_LCD_Display.s \
 	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
 	
 endif

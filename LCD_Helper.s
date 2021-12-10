@@ -3,14 +3,23 @@
 global	LCD_main
 extrn	LCD_Write_Message, LCD_Clear_Display, LCD_Clear_Display2, LCD_delay_ms
 extrn	SetTwoLines
+extrn	ADC_LCD_Setup, ADC_LCD_run, ADC_Read
 psect	udata_acs   ; named variables in access ram
 LCD_STATUS: ds 1
 OldState:   ds 1
+OldADC:	    ds 1
 Index:	    ds 1
 psect data
  
  DisplayTable:
-    db	    'W','F',':','S','Q','U','S','A','W','S','C',':','M','I','N','M','A','J'
+    db	    'W','F',':'	    ;0
+    db	    'S','Q','U'	    ;1
+    db	    ' ', ' ',' '    ;2
+    db	    'D', 'C', ':'   ;3
+    db	    'S','A','W'	    ;4
+    db	    'S','C',':'	    ;5
+    db	    'M','I','N'	    ;6
+    db      'M','A','J'	    ;7
     align   2
 
 psect	lcd_help_code, class=CODE
@@ -46,6 +55,12 @@ LCD_main:
 	cpfseq	OldState, A
 	call	ChangeLCD
 	
+	call	ADC_Read
+	movf	ADRESH, W
+	cpfseq	OldADC, A
+	call	ChangeLCD
+	
+	movff	ADRESH, OldADC
 	movff	LCD_STATUS, OldState
 	return
 	
@@ -57,25 +72,31 @@ WriteWave:
 WriteSquare:
 	movlw	0x1
 	call	WriteDisplay
+	movlw	0x2
+	call	WriteDisplay
+	movlw	0x3
+	call    WriteDisplay
+	call	ADC_LCD_Setup
+	call	ADC_LCD_run
 	return
 	
 WriteSaw:
-	movlw	0x2
+	movlw	0x4
 	call	WriteDisplay
 	return
 		
 WriteScale:
-	movlw	0x3
+	movlw	0x5
 	call	WriteDisplay
 	return
 	
 WriteMin:
-	movlw	0x4
+	movlw	0x6
 	call	WriteDisplay
 	return
 	
 WriteMaj:
-	movlw	0x5
+	movlw	0x7
 	call	WriteDisplay
 	return
 

@@ -33,7 +33,7 @@ ADC_Read:
 	btfsc   GO
 	return
 	// If we're clear read the top 8 bits and set to read again when possible
-	movf	ADRESH, 0
+	movf	ADRESH, W
 	movwf	Square_duty_cycle, A
 	bsf	GO
 	return
