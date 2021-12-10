@@ -2,7 +2,7 @@
 
 extrn	LCD_Setup, LCD_Write_Message, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms ; external LCD subroutines
 extrn	ADC_Setup, ADC_Read		   ; external ADC subroutines
-global	ADC_LCD_Setup, ADC_LCD_run
+global	ADC_LCD_Setup, ADC_LCD_run, check_change_for_lcd
 psect	udata_acs   ; reserve data space in access ram
 counter:    ds 1    ; reserve one byte for a counter variable
 delay_count:ds 1    ; reserve one byte for counter in the delay routine
@@ -190,6 +190,22 @@ check_change:
 	call	GetDigits
 check_return:
 	return
+	
+check_change_for_lcd:
+	call	ADC_Read
+	movf	ADRESH, 0
+	rrncf	WREG, W
+	rrncf	WREG, W
+	subwf	OldADRESH, W
+	bz	check_return_for_LCD	
+	
+	movff	ADRESH, OldADRESH
+	rrncf	OldADRESH, F
+	rrncf	OldADRESH, F
+	retlw	0
+	
+check_return_for_LCD:
+	retlw	1
 
 write_DC:
 	movf	DIG0, W	

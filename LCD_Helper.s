@@ -3,12 +3,13 @@
 global	LCD_main
 extrn	LCD_Write_Message, LCD_Clear_Display, LCD_Clear_Display2, LCD_delay_ms
 extrn	SetTwoLines
-extrn	ADC_LCD_Setup, ADC_LCD_run, ADC_Read
+extrn	ADC_LCD_Setup, ADC_LCD_run, ADC_Read, check_change_for_lcd
 psect	udata_acs   ; named variables in access ram
 LCD_STATUS: ds 1
 OldState:   ds 1
 OldADC:	    ds 1
 Index:	    ds 1
+Tmp:	    ds 1
 psect data
  
  DisplayTable:
@@ -55,13 +56,19 @@ LCD_main:
 	cpfseq	OldState, A
 	call	ChangeLCD
 	
-	call	ADC_Read
-	movf	ADRESH, W
-	cpfseq	OldADC, A
-	call	ChangeLCD
-	
-	movff	ADRESH, OldADC
 	movff	LCD_STATUS, OldState
+	
+	call	check_change_for_lcd
+	movwf	Tmp, A
+	movlw	0x1
+	cpfseq	Tmp
+	call	ChangeLCD
+LCD_ret:
+	return
+	
+
+LCD_suc:
+	//call	
 	return
 	
 WriteWave:
