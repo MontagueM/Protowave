@@ -89,8 +89,8 @@ DAC_Setup:
 	movwf	T1CON
 	
 	bcf	C4TSEL1
-	movlw	000000001B
-	movwf	CCPTMRS1
+	//movlw	000000001B
+	//movwf	CCPTMRS1
 	movlw	00001011B		
 	movwf	CCP4CON         	
 	movlw	0xee
@@ -143,12 +143,12 @@ DAC_change_frequency:
 	addwfc	TBLPTRH, F
 	addwfc	TBLPTRU, F
 	
-	// Read backwards, H then L (because yes)
+	// Write the new frequency into CCP compare registers
 	tblrd*+
-	tblrd*-
-	movff	TABLAT, CCPR4H
-	tblrd*
 	movff	TABLAT, CCPR4L
+	tblrd*
+	movff	TABLAT, CCPR4H
+	
 	return
 
 	end

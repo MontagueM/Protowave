@@ -11048,8 +11048,8 @@ DAC_Setup:
  movwf T1CON
 
  bcf ((CCPTMRS1) and 0FFh), 1, b
- movlw 000000001B
- movwf CCPTMRS1
+
+
  movlw 00001011B
  movwf CCP4CON
  movlw 0xee
@@ -11104,10 +11104,10 @@ DAC_change_frequency:
 
 
  tblrd*+
- tblrd*-
- movff TABLAT, CCPR4H
- tblrd*
  movff TABLAT, CCPR4L
+ tblrd*
+ movff TABLAT, CCPR4H
+
  return
 
  end

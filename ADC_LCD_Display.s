@@ -21,6 +21,7 @@ DIG2:    ds 1
 DIG3:    ds 1
 current_dig:    ds 1
 OldADRESH:  ds 1
+TmpADRESH:  ds 1
 ;current_dig:ds 1
 
 
@@ -171,37 +172,21 @@ GetDigits:
 
 	; ******* Main programme ****************************************
 ADC_LCD_run: 	
-	call	check_change
+	call	GetDigits
 	call	write_DC
 	
 	return
 	
-check_change:
-	call	ADC_Read
-	movf	ADRESH, 0
-	rrncf	WREG, W
-	rrncf	WREG, W
-	subwf	OldADRESH, W
-	bz	check_return	
-	
-	movff	ADRESH, OldADRESH
-	rrncf	OldADRESH, F
-	rrncf	OldADRESH, F
-	call	GetDigits
-check_return:
-	return
-	
 check_change_for_lcd:
 	call	ADC_Read
-	movf	ADRESH, 0
-	rrncf	WREG, W
-	rrncf	WREG, W
+	movff	ADRESH, TmpADRESH
+	movlw	11111100B
+	andwf	TmpADRESH, F, A
+	movf	TmpADRESH, W
 	subwf	OldADRESH, W
 	bz	check_return_for_LCD	
 	
-	movff	ADRESH, OldADRESH
-	rrncf	OldADRESH, F
-	rrncf	OldADRESH, F
+	movff	TmpADRESH, OldADRESH
 	retlw	0
 	
 check_return_for_LCD:
