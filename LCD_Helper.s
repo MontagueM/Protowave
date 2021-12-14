@@ -4,6 +4,7 @@ global	LCD_main
 extrn	LCD_Write_Message, LCD_Clear_Display, LCD_Clear_Display2, LCD_delay_ms
 extrn	SetTwoLines
 extrn	ADC_LCD_Setup, ADC_LCD_run, ADC_Read, check_change_for_lcd
+extrn	KB_Fin
 psect	udata_acs   ; named variables in access ram
 LCD_STATUS: ds 1
 OldState:   ds 1
@@ -12,6 +13,44 @@ Index:	    ds 1
 Tmp:	    ds 1
 psect data
  
+ Maj:
+    db    ' ', 'A', '3'
+    db    ' ', 'B', '3'
+    db    'C', '#', '4'
+    db    ' ', 'D', '4'
+    db    ' ', 'E', '4'
+    db    'F', '#', '4'
+    db    'G', '#', '4'
+    db    ' ', 'A', '4'
+    db    ' ', 'A', '4'
+    db    ' ', 'B', '4'
+    db    'C', '#', '5'
+    db    ' ', 'D', '5'
+    db    ' ', 'E', '5'
+    db    'F', '#', '5'
+    db    'G', '#', '5'
+    db    ' ', 'A', '5'
+    align   2
+    
+Min:
+    db    ' ', 'A', '3'
+    db    ' ', 'B', '3'
+    db    ' ', 'C', '4'
+    db    ' ', 'D', '4'
+    db    ' ', 'E', '4'
+    db    ' ', 'F', '4'
+    db    ' ', 'G', '4'
+    db    ' ', 'A', '4'
+    db    ' ', 'A', '4'
+    db    ' ', 'B', '4'
+    db    ' ', 'C', '5'
+    db    ' ', 'D', '5'
+    db    ' ', 'E', '5'
+    db    ' ', 'F', '5'
+    db    ' ', 'G', '5'
+    db    ' ', 'A', '5'
+    align   2
+    
  DisplayTable:
     db	    'W','F',':'	    ;0
     db	    'S','Q','U'	    ;1
@@ -21,6 +60,7 @@ psect data
     db	    'S','C',':'	    ;5
     db	    'M','I','N'	    ;6
     db      'M','A','J'	    ;7
+    db	    'K','B',':'	    ;8
     align   2
 
 psect	lcd_help_code, class=CODE
@@ -79,12 +119,16 @@ WriteWave:
 WriteSquare:
 	movlw	0x1
 	call	WriteDisplay
-	movlw	0x2
-	call	WriteDisplay
+	call	WriteEmpty
 	movlw	0x3
 	call    WriteDisplay
 	call	ADC_LCD_Setup
 	call	ADC_LCD_run
+	return
+
+WriteEmpty:
+    	movlw	0x2
+	call	WriteDisplay
 	return
 	
 WriteSaw:
@@ -107,6 +151,49 @@ WriteMaj:
 	call	WriteDisplay
 	return
 
+SetMinorTable:
+        	; read the corresponding value
+	movlw	low highword(Min)	; address of data in PM
+	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
+	movlw	high(Min)	; address of data in PM
+	movwf	TBLPTRH, A		; load high byte to TBLPTRH
+	movlw	low(Min)	; address of data in PM
+	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+	return
+	
+SetMajorTable:
+        	; read the corresponding value
+	movlw	low highword(Maj)	; address of data in PM
+	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
+	movlw	high(Maj)	; address of data in PM
+	movwf	TBLPTRH, A		; load high byte to TBLPTRH
+	movlw	low(Maj)	; address of data in PM
+	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+	return
+	
+WriteKey:
+	movlw	0x8
+	call	WriteDisplay
+	
+	movf	KB_Fin, W
+	mullw	0x3
+	movff	PRODL, Index
+	
+	call	SetMajorTable
+	//call	SetMinorTable
+	
+	movf	Index, W
+	addwf	TBLPTRL, F
+	movlw	0x0
+	addwfc	TBLPTRH, F
+	addwfc	TBLPTRU, F
+	
+	movlw	3
+	call	LCD_Write_Message
+	return
+	
+	return
+	
 ChangeLCD:
     	call	LCD_Clear_Display
     	call	WriteWave
@@ -123,6 +210,9 @@ ChangeLCD:
 	call	WriteMaj
 	btfss	PORTD, 5, A
 	call	WriteMin
+	
+	call	WriteEmpty
+	call	WriteKey
 	
 	return
 	end

@@ -1,7 +1,7 @@
 #include <xc.inc>
 	
 global	DAC_Setup, DAC_Int_Hi, DAC_change_frequency
-extrn	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
+extrn	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status, KB_Fin
 psect	udata_acs   ; named variables in access ram
 DAC_freq_index: ds 1
 bIs_Saw:	ds 1
@@ -127,7 +127,7 @@ ReadMinorScale:
 
 DAC_change_frequency:
 	// Take target from W
-	movwf	DAC_freq_index
+	movff	KB_Fin, DAC_freq_index
 	
 	// Which scale to read based on bit 5
 	btfsc	PORTD, 5, A

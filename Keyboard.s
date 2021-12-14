@@ -1,6 +1,6 @@
 #include <xc.inc>
     
-global	KB_Setup, KB_main, RET_status
+global	KB_Setup, KB_main, RET_status, KB_Fin
 extrn	LCD_Write_Message, LCD_Setup, LCD_delay_ms
 extrn	DAC_change_frequency
 psect	udata_acs   ; reserve data space in access ram
@@ -143,25 +143,8 @@ Decode_Keypress:
 	return
     
 Display_Keypress:
-    	movf	KB_Fin, 0
+    	//movf	KB_Fin, 0
 	call	DAC_change_frequency
 	return
-    	; read the corresponding value
-	movlw	low highword(myTable)	; address of data in PM
-	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(myTable)	; address of data in PM
-	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(myTable)	; address of data in PM
-	movwf	TBLPTRL, A		; load low byte to TBLPTRL
-	
-	movf	KB_Fin, 0
-	addwf	TBLPTRL, 1
-	
-	movlw	1
-	call	LCD_Write_Message
-	
-	movf	KB_Fin, 0
-	call	DAC_change_frequency
-    return
 
     end

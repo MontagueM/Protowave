@@ -10960,7 +10960,7 @@ ENDM
 
 
 global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
-extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status
+extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status, KB_Fin
 psect udata_acs ; named variables in access ram
 DAC_freq_index: ds 1
 bIs_Saw: ds 1
@@ -11086,7 +11086,7 @@ ReadMinorScale:
 
 DAC_change_frequency:
 
- movwf DAC_freq_index
+ movff KB_Fin, DAC_freq_index
 
 
  btfsc PORTD, 5, A
