@@ -105,10 +105,15 @@ Check_Key_Pressed:
 	; check KB_val is not zero
 	movlw	0x00
 	cpfsgt	KB_Col
-	retlw	1 ; fail
-	
+	goto	Check_Key_Fail
+
 	retlw	0 ; success
     
+Check_Key_Fail:
+	movlw	0xFF
+	movwf	KB_Fin, A
+	retlw	1 ; fail
+	
 Decode_Keypress:
 	; Set pressed
 	movlw	0x01

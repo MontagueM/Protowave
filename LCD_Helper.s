@@ -8,7 +8,7 @@ extrn	KB_Fin
 psect	udata_acs   ; named variables in access ram
 LCD_STATUS: ds 1
 OldState:   ds 1
-OldADC:	    ds 1
+OldKey:	    ds 1
 Index:	    ds 1
 Tmp:	    ds 1
 psect data
@@ -98,18 +98,35 @@ LCD_main:
 	
 	movff	LCD_STATUS, OldState
 	
+	// If ADC has changed, write new string to LCD
 	call	check_change_for_lcd
+	movwf	Tmp, A
+	movlw	0x1
+	cpfseq	Tmp
+	call	ChangeLCD
+	
+	// If keyboard key has changed, write new string to LCD
+	call	Check_Key_Change
 	movwf	Tmp, A
 	movlw	0x1
 	cpfseq	Tmp
 	call	ChangeLCD
 LCD_ret:
 	return
-	
 
 LCD_suc:
 	//call	
 	return
+	
+Check_Key_Change:
+	movf	KB_Fin, W
+	subwf	OldKey, W, A
+	bz	ret_fail
+	// Set old key to new key and return success to update screen
+	movff	KB_Fin, OldKey
+	retlw	0
+ret_fail:
+	retlw	1
 	
 WriteWave:
 	movlw	0x0
@@ -174,6 +191,10 @@ SetMajorTable:
 WriteKey:
 	movlw	0x8
 	call	WriteDisplay
+	
+	movlw	0xFF
+	cpfslt	KB_Fin
+	goto	WriteEmpty
 	
 	movf	KB_Fin, W
 	mullw	0x3
