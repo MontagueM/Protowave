@@ -12,19 +12,19 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/default/production/Keyboard.o
-kb_code CODE 0 1FBDE 1FBDE A4 1
-data CONST 0 1FA14 1FA14 10 1
+kb_code CODE 0 1FBD6 1FBD6 A4 1
+data CONST 0 1FA0C 1FA0C 10 1
 udata_acs COMRAM 1 12 12 7 1
 $build/default/production/DAC_Interrupt.o
-data CONST 0 1FA86 1FA86 40 1
+data CONST 0 1FA7E 1FA7E 40 1
 udata_acs COMRAM 1 28 28 2 1
-dac_code CODE 0 1FB42 1FB42 9C 1
+dac_code CODE 0 1FB3A 1FB3A 9C 1
 $build/default/production/LCD_Helper.o
-data CONST 0 1FAC6 1FAC6 7C 1
-lcd_help_code CODE 0 1FC82 1FC82 108 1
+data CONST 0 1FABE 1FABE 7C 1
+lcd_help_code CODE 0 1FC7A 1FC7A 110 1
 udata_acs COMRAM 1 1F 1F 5 1
 $build/default/production/Waveforms.o
-wave_code CODE 0 1FA54 1FA54 32 1
+wave_code CODE 0 1FA4C 1FA4C 32 1
 udata_acs COMRAM 1 24 24 4 1
 $build/default/production/main.o
 code CODE 0 0 0 28 1
@@ -35,7 +35,7 @@ udata_acs COMRAM 1 0 0 12 1
 $build/default/production/config.o
 config CONFIG 4 300000 300000 E 1
 $build/default/production/ADC.o
-adc_code CODE 0 1FA24 1FA24 30 1
+adc_code CODE 0 1FA1C 1FA1C 30 1
 $build/default/production/LCD.o
 udata_acs_ovr COMRAM 1 2A 2A 1 1
 udata_acs COMRAM 1 19 19 6 1
@@ -58,10 +58,10 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST 28-1FA13 1
+CONST 28-1FA0B 1
 IDLOC 200000-200007 1
-SMALLCONST 1000-1FA13 1
-CODE 28-1FA13 1
+SMALLCONST 1000-1FA0B 1
+CODE 28-1FA0B 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
@@ -72,7 +72,7 @@ BIGRAM 28-F15 1
 COMRAM 2B-5F 1
 EEDATA F00000-F003FF 1
 MEDIUMCONST 1000-FFFF 1
-MEDIUMCONST 11000-1FA13 1
+MEDIUMCONST 11000-1FA0B 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -87,271 +87,274 @@ MEDIUMCONST 11000-1FA13 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/production/Keyboard.o
-1FBDE kb_code CODE >27:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBE0 kb_code CODE >28:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBE2 kb_code CODE >29:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBE4 kb_code CODE >30:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBE6 kb_code CODE >31:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBE8 kb_code CODE >37:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBEC kb_code CODE >38:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBF0 kb_code CODE >39:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBF2 kb_code CODE >40:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBF4 kb_code CODE >41:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBF6 kb_code CODE >42:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBF8 kb_code CODE >44:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FBFC kb_code CODE >45:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC00 kb_code CODE >46:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC02 kb_code CODE >49:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC04 kb_code CODE >50:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC06 kb_code CODE >51:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC08 kb_code CODE >52:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC0A kb_code CODE >55:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC0C kb_code CODE >56:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC0E kb_code CODE >57:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC10 kb_code CODE >58:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC12 kb_code CODE >60:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC14 kb_code CODE >61:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC16 kb_code CODE >64:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC18 kb_code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC1C kb_code CODE >68:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC1E kb_code CODE >69:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC20 kb_code CODE >72:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC24 kb_code CODE >75:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC26 kb_code CODE >76:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC28 kb_code CODE >79:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC2A kb_code CODE >80:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC2C kb_code CODE >81:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC2E kb_code CODE >84:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC30 kb_code CODE >85:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC32 kb_code CODE >87:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC34 kb_code CODE >88:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC38 kb_code CODE >91:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC3A kb_code CODE >92:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC3C kb_code CODE >96:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC40 kb_code CODE >97:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC42 kb_code CODE >98:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC44 kb_code CODE >99:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC46 kb_code CODE >102:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC48 kb_code CODE >106:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC4A kb_code CODE >107:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC4C kb_code CODE >108:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC4E kb_code CODE >110:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC50 kb_code CODE >114:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC52 kb_code CODE >115:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC54 kb_code CODE >121:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC56 kb_code CODE >122:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC58 kb_code CODE >123:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC5A kb_code CODE >124:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC5C kb_code CODE >127:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC5E kb_code CODE >128:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC60 kb_code CODE >129:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC64 kb_code CODE >130:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC66 kb_code CODE >131:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC68 kb_code CODE >132:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC6C kb_code CODE >135:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC6E kb_code CODE >136:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC70 kb_code CODE >137:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC72 kb_code CODE >138:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC74 kb_code CODE >139:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC76 kb_code CODE >140:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC78 kb_code CODE >141:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC7A kb_code CODE >143:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC7C kb_code CODE >147:H:\Desktop\Microprocessors\Protowave\Keyboard.s
-1FC80 kb_code CODE >148:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBD6 kb_code CODE >27:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBD8 kb_code CODE >28:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBDA kb_code CODE >29:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBDC kb_code CODE >30:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBDE kb_code CODE >31:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBE0 kb_code CODE >37:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBE4 kb_code CODE >38:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBE8 kb_code CODE >39:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBEA kb_code CODE >40:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBEC kb_code CODE >41:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBEE kb_code CODE >42:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBF0 kb_code CODE >44:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBF4 kb_code CODE >45:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBF8 kb_code CODE >46:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBFA kb_code CODE >49:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBFC kb_code CODE >50:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FBFE kb_code CODE >51:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC00 kb_code CODE >52:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC02 kb_code CODE >55:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC04 kb_code CODE >56:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC06 kb_code CODE >57:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC08 kb_code CODE >58:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC0A kb_code CODE >60:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC0C kb_code CODE >61:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC0E kb_code CODE >64:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC10 kb_code CODE >65:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC14 kb_code CODE >68:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC16 kb_code CODE >69:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC18 kb_code CODE >72:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC1C kb_code CODE >75:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC1E kb_code CODE >76:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC20 kb_code CODE >79:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC22 kb_code CODE >80:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC24 kb_code CODE >81:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC26 kb_code CODE >84:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC28 kb_code CODE >85:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC2A kb_code CODE >87:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC2C kb_code CODE >88:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC30 kb_code CODE >91:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC32 kb_code CODE >92:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC34 kb_code CODE >96:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC38 kb_code CODE >97:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC3A kb_code CODE >98:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC3C kb_code CODE >99:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC3E kb_code CODE >102:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC40 kb_code CODE >106:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC42 kb_code CODE >107:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC44 kb_code CODE >108:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC46 kb_code CODE >110:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC48 kb_code CODE >114:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC4A kb_code CODE >115:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC4C kb_code CODE >121:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC4E kb_code CODE >122:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC50 kb_code CODE >123:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC52 kb_code CODE >124:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC54 kb_code CODE >127:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC56 kb_code CODE >128:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC58 kb_code CODE >129:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC5C kb_code CODE >130:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC5E kb_code CODE >131:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC60 kb_code CODE >132:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC64 kb_code CODE >135:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC66 kb_code CODE >136:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC68 kb_code CODE >137:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC6A kb_code CODE >138:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC6C kb_code CODE >139:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC6E kb_code CODE >140:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC70 kb_code CODE >141:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC72 kb_code CODE >143:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC74 kb_code CODE >147:H:\Desktop\Microprocessors\Protowave\Keyboard.s
+1FC78 kb_code CODE >148:H:\Desktop\Microprocessors\Protowave\Keyboard.s
 $build/default/production/DAC_Interrupt.o
-1FB42 dac_code CODE >50:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB44 dac_code CODE >51:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB46 dac_code CODE >52:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB48 dac_code CODE >55:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB4A dac_code CODE >56:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB4C dac_code CODE >58:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB4E dac_code CODE >59:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB50 dac_code CODE >60:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB52 dac_code CODE >63:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB54 dac_code CODE >64:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB58 dac_code CODE >66:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB5A dac_code CODE >67:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB5E dac_code CODE >70:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB60 dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB62 dac_code CODE >73:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB64 dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB66 dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB68 dac_code CODE >78:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB6A dac_code CODE >79:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB6C dac_code CODE >80:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB6E dac_code CODE >81:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB70 dac_code CODE >82:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB72 dac_code CODE >83:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB74 dac_code CODE >85:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB76 dac_code CODE >86:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB78 dac_code CODE >88:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB7A dac_code CODE >89:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB7C dac_code CODE >91:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB7E dac_code CODE >94:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB80 dac_code CODE >95:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB82 dac_code CODE >96:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB84 dac_code CODE >97:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB86 dac_code CODE >98:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB88 dac_code CODE >99:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB8A dac_code CODE >101:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB8C dac_code CODE >102:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB8E dac_code CODE >103:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB90 dac_code CODE >105:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB92 dac_code CODE >106:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB94 dac_code CODE >107:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB98 dac_code CODE >108:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB9A dac_code CODE >111:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB9C dac_code CODE >112:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FB9E dac_code CODE >113:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBA0 dac_code CODE >114:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBA2 dac_code CODE >115:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBA4 dac_code CODE >116:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBA6 dac_code CODE >117:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBA8 dac_code CODE >120:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBAA dac_code CODE >121:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBAC dac_code CODE >122:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBAE dac_code CODE >123:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBB0 dac_code CODE >124:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBB2 dac_code CODE >125:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBB4 dac_code CODE >126:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBB6 dac_code CODE >130:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBBA dac_code CODE >133:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBBC dac_code CODE >134:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBC0 dac_code CODE >136:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBC2 dac_code CODE >137:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBC6 dac_code CODE >140:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBC8 dac_code CODE >141:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBCA dac_code CODE >142:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBCC dac_code CODE >143:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBCE dac_code CODE >144:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBD0 dac_code CODE >147:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBD2 dac_code CODE >148:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBD6 dac_code CODE >149:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBD8 dac_code CODE >150:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
-1FBDC dac_code CODE >152:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB3A dac_code CODE >50:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB3C dac_code CODE >51:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB3E dac_code CODE >52:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB40 dac_code CODE >55:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB42 dac_code CODE >56:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB44 dac_code CODE >58:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB46 dac_code CODE >59:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB48 dac_code CODE >60:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB4A dac_code CODE >63:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB4C dac_code CODE >64:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB50 dac_code CODE >66:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB52 dac_code CODE >67:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB56 dac_code CODE >70:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB58 dac_code CODE >71:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB5A dac_code CODE >73:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB5C dac_code CODE >74:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB5E dac_code CODE >75:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB60 dac_code CODE >78:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB62 dac_code CODE >79:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB64 dac_code CODE >80:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB66 dac_code CODE >81:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB68 dac_code CODE >82:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB6A dac_code CODE >83:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB6C dac_code CODE >85:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB6E dac_code CODE >86:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB70 dac_code CODE >88:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB72 dac_code CODE >89:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB74 dac_code CODE >91:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB76 dac_code CODE >94:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB78 dac_code CODE >95:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB7A dac_code CODE >96:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB7C dac_code CODE >97:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB7E dac_code CODE >98:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB80 dac_code CODE >99:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB82 dac_code CODE >101:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB84 dac_code CODE >102:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB86 dac_code CODE >103:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB88 dac_code CODE >105:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB8A dac_code CODE >106:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB8C dac_code CODE >107:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB90 dac_code CODE >108:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB92 dac_code CODE >111:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB94 dac_code CODE >112:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB96 dac_code CODE >113:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB98 dac_code CODE >114:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB9A dac_code CODE >115:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB9C dac_code CODE >116:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FB9E dac_code CODE >117:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBA0 dac_code CODE >120:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBA2 dac_code CODE >121:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBA4 dac_code CODE >122:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBA6 dac_code CODE >123:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBA8 dac_code CODE >124:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBAA dac_code CODE >125:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBAC dac_code CODE >126:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBAE dac_code CODE >130:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBB2 dac_code CODE >133:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBB4 dac_code CODE >134:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBB8 dac_code CODE >136:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBBA dac_code CODE >137:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBBE dac_code CODE >140:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBC0 dac_code CODE >141:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBC2 dac_code CODE >142:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBC4 dac_code CODE >143:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBC6 dac_code CODE >144:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBC8 dac_code CODE >147:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBCA dac_code CODE >148:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBCE dac_code CODE >149:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBD0 dac_code CODE >150:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
+1FBD4 dac_code CODE >152:H:\Desktop\Microprocessors\Protowave\DAC_Interrupt.s
 $build/default/production/LCD_Helper.o
-1FC82 lcd_help_code CODE >68:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC84 lcd_help_code CODE >69:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC88 lcd_help_code CODE >72:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC8A lcd_help_code CODE >73:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC8C lcd_help_code CODE >74:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC8E lcd_help_code CODE >75:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC90 lcd_help_code CODE >76:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC92 lcd_help_code CODE >77:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC94 lcd_help_code CODE >79:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC96 lcd_help_code CODE >80:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC98 lcd_help_code CODE >81:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC9A lcd_help_code CODE >82:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC9C lcd_help_code CODE >83:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FC9E lcd_help_code CODE >85:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCA0 lcd_help_code CODE >86:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCA4 lcd_help_code CODE >87:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCA6 lcd_help_code CODE >91:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCAA lcd_help_code CODE >92:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCAC lcd_help_code CODE >93:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCAE lcd_help_code CODE >94:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCB0 lcd_help_code CODE >96:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCB2 lcd_help_code CODE >97:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCB6 lcd_help_code CODE >99:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCBA lcd_help_code CODE >101:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCBE lcd_help_code CODE >102:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCC0 lcd_help_code CODE >103:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCC2 lcd_help_code CODE >104:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCC4 lcd_help_code CODE >105:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCC8 lcd_help_code CODE >107:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCCA lcd_help_code CODE >112:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCCC lcd_help_code CODE >115:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCCE lcd_help_code CODE >116:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCD2 lcd_help_code CODE >117:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCD4 lcd_help_code CODE >120:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCD6 lcd_help_code CODE >121:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCDA lcd_help_code CODE >122:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCDE lcd_help_code CODE >123:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCE0 lcd_help_code CODE >124:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCE4 lcd_help_code CODE >125:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCE8 lcd_help_code CODE >126:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCEC lcd_help_code CODE >127:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCEE lcd_help_code CODE >130:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCF0 lcd_help_code CODE >131:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCF4 lcd_help_code CODE >132:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCF6 lcd_help_code CODE >135:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCF8 lcd_help_code CODE >136:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCFC lcd_help_code CODE >137:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FCFE lcd_help_code CODE >140:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD00 lcd_help_code CODE >141:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD04 lcd_help_code CODE >142:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD06 lcd_help_code CODE >145:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD08 lcd_help_code CODE >146:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD0C lcd_help_code CODE >147:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD0E lcd_help_code CODE >150:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD10 lcd_help_code CODE >151:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD14 lcd_help_code CODE >152:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD16 lcd_help_code CODE >156:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD18 lcd_help_code CODE >157:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD1A lcd_help_code CODE >158:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD1C lcd_help_code CODE >159:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD1E lcd_help_code CODE >160:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD20 lcd_help_code CODE >161:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD22 lcd_help_code CODE >162:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD24 lcd_help_code CODE >166:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD26 lcd_help_code CODE >167:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD28 lcd_help_code CODE >168:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD2A lcd_help_code CODE >169:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD2C lcd_help_code CODE >170:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD2E lcd_help_code CODE >171:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD30 lcd_help_code CODE >172:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD32 lcd_help_code CODE >175:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD34 lcd_help_code CODE >176:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD38 lcd_help_code CODE >178:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD3A lcd_help_code CODE >179:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD3C lcd_help_code CODE >180:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD40 lcd_help_code CODE >182:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD44 lcd_help_code CODE >185:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD46 lcd_help_code CODE >186:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD48 lcd_help_code CODE >187:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD4A lcd_help_code CODE >188:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD4C lcd_help_code CODE >189:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD4E lcd_help_code CODE >191:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD50 lcd_help_code CODE >192:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD54 lcd_help_code CODE >193:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD56 lcd_help_code CODE >195:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD58 lcd_help_code CODE >198:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD5C lcd_help_code CODE >199:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD60 lcd_help_code CODE >201:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD62 lcd_help_code CODE >202:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD66 lcd_help_code CODE >203:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD68 lcd_help_code CODE >204:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD6C lcd_help_code CODE >206:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD70 lcd_help_code CODE >207:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD74 lcd_help_code CODE >209:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD76 lcd_help_code CODE >210:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD7A lcd_help_code CODE >211:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD7C lcd_help_code CODE >212:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD80 lcd_help_code CODE >214:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD84 lcd_help_code CODE >215:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
-1FD88 lcd_help_code CODE >217:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC7A lcd_help_code CODE >68:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC7C lcd_help_code CODE >69:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC80 lcd_help_code CODE >72:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC82 lcd_help_code CODE >73:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC84 lcd_help_code CODE >74:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC86 lcd_help_code CODE >75:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC88 lcd_help_code CODE >76:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC8A lcd_help_code CODE >77:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC8C lcd_help_code CODE >79:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC8E lcd_help_code CODE >80:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC90 lcd_help_code CODE >81:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC92 lcd_help_code CODE >82:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC94 lcd_help_code CODE >83:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC96 lcd_help_code CODE >85:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC98 lcd_help_code CODE >86:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC9C lcd_help_code CODE >87:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FC9E lcd_help_code CODE >91:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCA2 lcd_help_code CODE >92:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCA4 lcd_help_code CODE >93:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCA6 lcd_help_code CODE >94:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCA8 lcd_help_code CODE >96:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCAA lcd_help_code CODE >97:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCAE lcd_help_code CODE >99:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCB2 lcd_help_code CODE >101:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCB6 lcd_help_code CODE >102:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCB8 lcd_help_code CODE >103:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCBA lcd_help_code CODE >104:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCBC lcd_help_code CODE >105:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCC0 lcd_help_code CODE >107:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCC2 lcd_help_code CODE >112:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCC4 lcd_help_code CODE >115:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCC6 lcd_help_code CODE >116:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCCA lcd_help_code CODE >117:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCCC lcd_help_code CODE >120:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCCE lcd_help_code CODE >121:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCD2 lcd_help_code CODE >122:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCD6 lcd_help_code CODE >123:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCD8 lcd_help_code CODE >124:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCDC lcd_help_code CODE >125:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCE0 lcd_help_code CODE >126:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCE4 lcd_help_code CODE >127:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCE6 lcd_help_code CODE >130:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCE8 lcd_help_code CODE >131:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCEC lcd_help_code CODE >132:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCEE lcd_help_code CODE >135:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCF0 lcd_help_code CODE >136:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCF4 lcd_help_code CODE >137:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCF6 lcd_help_code CODE >140:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCF8 lcd_help_code CODE >141:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCFC lcd_help_code CODE >142:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FCFE lcd_help_code CODE >145:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD00 lcd_help_code CODE >146:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD04 lcd_help_code CODE >147:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD06 lcd_help_code CODE >150:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD08 lcd_help_code CODE >151:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD0C lcd_help_code CODE >152:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD0E lcd_help_code CODE >156:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD10 lcd_help_code CODE >157:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD12 lcd_help_code CODE >158:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD14 lcd_help_code CODE >159:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD16 lcd_help_code CODE >160:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD18 lcd_help_code CODE >161:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD1A lcd_help_code CODE >162:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD1C lcd_help_code CODE >166:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD1E lcd_help_code CODE >167:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD20 lcd_help_code CODE >168:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD22 lcd_help_code CODE >169:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD24 lcd_help_code CODE >170:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD26 lcd_help_code CODE >171:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD28 lcd_help_code CODE >172:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD2A lcd_help_code CODE >175:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD2C lcd_help_code CODE >176:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD30 lcd_help_code CODE >178:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD32 lcd_help_code CODE >179:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD34 lcd_help_code CODE >180:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD38 lcd_help_code CODE >183:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD3A lcd_help_code CODE >184:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD3E lcd_help_code CODE >186:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD40 lcd_help_code CODE >187:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD44 lcd_help_code CODE >189:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD46 lcd_help_code CODE >190:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD48 lcd_help_code CODE >191:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD4A lcd_help_code CODE >192:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD4C lcd_help_code CODE >193:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD4E lcd_help_code CODE >195:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD50 lcd_help_code CODE >196:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD54 lcd_help_code CODE >197:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD56 lcd_help_code CODE >199:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD58 lcd_help_code CODE >202:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD5C lcd_help_code CODE >203:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD60 lcd_help_code CODE >205:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD62 lcd_help_code CODE >206:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD66 lcd_help_code CODE >207:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD68 lcd_help_code CODE >208:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD6C lcd_help_code CODE >210:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD70 lcd_help_code CODE >211:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD74 lcd_help_code CODE >213:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD76 lcd_help_code CODE >214:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD7A lcd_help_code CODE >215:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD7C lcd_help_code CODE >216:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD80 lcd_help_code CODE >218:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD84 lcd_help_code CODE >219:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
+1FD88 lcd_help_code CODE >221:H:\Desktop\Microprocessors\Protowave\LCD_Helper.s
 $build/default/production/Waveforms.o
-1FA54 wave_code CODE >16:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA56 wave_code CODE >17:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA58 wave_code CODE >20:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA5A wave_code CODE >21:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA5C wave_code CODE >25:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA60 wave_code CODE >28:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA62 wave_code CODE >31:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA64 wave_code CODE >32:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA66 wave_code CODE >33:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA6A wave_code CODE >36:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA6C wave_code CODE >37:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA6E wave_code CODE >38:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA72 wave_code CODE >39:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA74 wave_code CODE >43:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA76 wave_code CODE >44:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA78 wave_code CODE >46:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA7A wave_code CODE >47:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA7C wave_code CODE >49:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA7E wave_code CODE >50:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA80 wave_code CODE >52:H:\Desktop\Microprocessors\Protowave\Waveforms.s
-1FA84 wave_code CODE >53:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA4C wave_code CODE >16:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA4E wave_code CODE >17:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA50 wave_code CODE >20:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA52 wave_code CODE >21:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA54 wave_code CODE >25:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA58 wave_code CODE >28:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA5A wave_code CODE >31:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA5C wave_code CODE >32:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA5E wave_code CODE >33:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA62 wave_code CODE >36:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA64 wave_code CODE >37:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA66 wave_code CODE >38:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA6A wave_code CODE >39:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA6C wave_code CODE >43:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA6E wave_code CODE >44:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA70 wave_code CODE >46:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA72 wave_code CODE >47:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA74 wave_code CODE >49:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA76 wave_code CODE >50:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA78 wave_code CODE >52:H:\Desktop\Microprocessors\Protowave\Waveforms.s
+1FA7C wave_code CODE >53:H:\Desktop\Microprocessors\Protowave\Waveforms.s
 $build/default/production/main.o
 0 code CODE >10:H:\Desktop\Microprocessors\Protowave\main.s
 0 code CODE >12:H:\Desktop\Microprocessors\Protowave\main.s
@@ -489,30 +492,30 @@ $build/default/production/ADC_LCD_Display.o
 1FEAA adc_calibration_lcd CODE >203:H:\Desktop\Microprocessors\Protowave\ADC_LCD_Display.s
 1FEAE adc_calibration_lcd CODE >205:H:\Desktop\Microprocessors\Protowave\ADC_LCD_Display.s
 $build/default/production/ADC.o
-1FA24 adc_code CODE >8:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA26 adc_code CODE >9:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA28 adc_code CODE >10:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA2A adc_code CODE >11:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA2C adc_code CODE >12:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA2E adc_code CODE >13:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA30 adc_code CODE >14:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA32 adc_code CODE >15:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA34 adc_code CODE >16:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA36 adc_code CODE >17:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA38 adc_code CODE >20:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA3A adc_code CODE >23:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA3C adc_code CODE >24:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA3E adc_code CODE >25:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA40 adc_code CODE >26:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA42 adc_code CODE >27:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA44 adc_code CODE >28:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA46 adc_code CODE >29:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA48 adc_code CODE >33:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA4A adc_code CODE >34:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA4C adc_code CODE >36:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA4E adc_code CODE >37:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA50 adc_code CODE >38:H:\Desktop\Microprocessors\Protowave\ADC.s
-1FA52 adc_code CODE >39:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA1C adc_code CODE >8:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA1E adc_code CODE >9:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA20 adc_code CODE >10:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA22 adc_code CODE >11:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA24 adc_code CODE >12:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA26 adc_code CODE >13:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA28 adc_code CODE >14:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA2A adc_code CODE >15:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA2C adc_code CODE >16:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA2E adc_code CODE >17:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA30 adc_code CODE >20:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA32 adc_code CODE >23:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA34 adc_code CODE >24:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA36 adc_code CODE >25:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA38 adc_code CODE >26:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA3A adc_code CODE >27:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA3C adc_code CODE >28:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA3E adc_code CODE >29:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA40 adc_code CODE >33:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA42 adc_code CODE >34:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA44 adc_code CODE >36:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA46 adc_code CODE >37:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA48 adc_code CODE >38:H:\Desktop\Microprocessors\Protowave\ADC.s
+1FA4A adc_code CODE >39:H:\Desktop\Microprocessors\Protowave\ADC.s
 $build/default/production/LCD.o
 1FEB0 lcd_code CODE >22:H:\Desktop\Microprocessors\Protowave\LCD.s
 1FEB2 lcd_code CODE >23:H:\Desktop\Microprocessors\Protowave\LCD.s
@@ -680,18 +683,18 @@ __Hudata_bank8 0 0 ABS 0 udata_bank8 -
 __Hudata_bank9 0 0 ABS 0 udata_bank9 -
 __Hlcd_code 0 0 ABS 0 lcd_code -
 __Hdac_code 0 0 ABS 0 dac_code -
-DAC_change_frequency 1FBB6 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_change_frequency 1FBAE 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 RET_status 18 0 COMRAM 1 udata_acs build/default/production/Keyboard.o
 __Ludata_acs_ovr 2A 0 COMRAM 1 udata_acs_ovr -
 LCD_Clear_Display 1FF0A 0 CODE 0 lcd_code build/default/production/LCD.o
 __Lkb_code 0 0 ABS 0 kb_code -
 LCD_Write_Hex 1FF2C 0 CODE 0 lcd_code build/default/production/LCD.o
 __Hadc_code 0 0 ABS 0 adc_code -
-KB_main 1FBE8 0 CODE 0 kb_code build/default/production/Keyboard.o
+KB_main 1FBE0 0 CODE 0 kb_code build/default/production/Keyboard.o
 __Hudata_acs_ovr 2B 0 COMRAM 1 udata_acs_ovr -
 LCD_Send_Byte_D 1FF8E 0 CODE 0 lcd_code build/default/production/LCD.o
 LCD_Send_Byte_I 1FF72 0 CODE 0 lcd_code build/default/production/LCD.o
-Do_Sawtooth 1FA54 0 CODE 0 wave_code build/default/production/Waveforms.o
+Do_Sawtooth 1FA4C 0 CODE 0 wave_code build/default/production/Waveforms.o
 __Hwave_code 0 0 ABS 0 wave_code -
 __Hudata_bank10 0 0 ABS 0 udata_bank10 -
 __Hudata_bank11 0 0 ABS 0 udata_bank11 -
@@ -700,14 +703,14 @@ __Hudata_bank13 0 0 ABS 0 udata_bank13 -
 __Hudata_bank14 0 0 ABS 0 udata_bank14 -
 __Hudata_bank15 0 0 ABS 0 udata_bank15 -
 __Lwave_code 0 0 ABS 0 wave_code -
-ADC_Close 1FA3A 0 CODE 0 adc_code build/default/production/ADC.o
-ADC_Setup 1FA24 0 CODE 0 adc_code build/default/production/ADC.o
+ADC_Close 1FA32 0 CODE 0 adc_code build/default/production/ADC.o
+ADC_Setup 1FA1C 0 CODE 0 adc_code build/default/production/ADC.o
 isa$xinst 0 0 ABS 0 - build/default/production/main.o
 __Hedata 0 0 ABS 0 edata -
 __Hudata 0 0 ABS 0 udata -
-LCD_main 1FCA6 0 CODE 0 lcd_help_code build/default/production/LCD_Helper.o
+LCD_main 1FC9E 0 CODE 0 lcd_help_code build/default/production/LCD_Helper.o
 __Hconfig 30000E 0 CONFIG 4 config -
-KB_Setup 1FBDE 0 CODE 0 kb_code build/default/production/Keyboard.o
+KB_Setup 1FBD6 0 CODE 0 kb_code build/default/production/Keyboard.o
 __Ledata 0 0 ABS 0 edata -
 __Ludata 0 0 ABS 0 udata -
 __Hcode 0 0 ABS 0 code -
@@ -727,14 +730,14 @@ __Ludata_bank12 0 0 ABS 0 udata_bank12 -
 __Ludata_bank13 0 0 ABS 0 udata_bank13 -
 __Ludata_bank14 0 0 ABS 0 udata_bank14 -
 __Ludata_bank15 0 0 ABS 0 udata_bank15 -
-Square_Setup 1FA74 0 CODE 0 wave_code build/default/production/Waveforms.o
-ADC_Read 1FA48 0 CODE 0 adc_code build/default/production/ADC.o
+Square_Setup 1FA6C 0 CODE 0 wave_code build/default/production/Waveforms.o
+ADC_Read 1FA40 0 CODE 0 adc_code build/default/production/ADC.o
 LCD_Clear_Display2 1FF24 0 CODE 0 lcd_code build/default/production/LCD.o
 __Hlcd_help_code 0 0 ABS 0 lcd_help_code -
 __Lconfig 0 0 CONFIG 4 config -
 LCD_Write_Message 1FF4A 0 CODE 0 lcd_code build/default/production/LCD.o
 isa$std 1 0 ABS 0 - build/default/production/main.o
-Do_Square 1FA5C 0 CODE 0 wave_code build/default/production/Waveforms.o
+Do_Square 1FA54 0 CODE 0 wave_code build/default/production/Waveforms.o
 __Ladc_calibration_lcd 0 0 ABS 0 adc_calibration_lcd -
 LCD_Setup 1FEB0 0 CODE 0 lcd_code build/default/production/LCD.o
 __Lspace_0 0 0 ABS 0 - -
@@ -759,11 +762,11 @@ check_change_for_lcd 1FE7C 0 CODE 0 adc_calibration_lcd build/default/production
 __Llcd_code 0 0 ABS 0 lcd_code -
 SetTwoLines 1FF64 0 CODE 0 lcd_code build/default/production/LCD.o
 __Ldac_code 0 0 ABS 0 dac_code -
-DAC_Setup 1FB68 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_Setup 1FB60 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Hudata_acs 0 0 ABS 0 udata_acs -
-DAC_Int_Hi 1FB42 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
+DAC_Int_Hi 1FB3A 0 CODE 0 dac_code build/default/production/DAC_Interrupt.o
 __Ludata_acs 0 0 ABS 0 udata_acs -
-Sawtooth_Setup 1FA58 0 CODE 0 wave_code build/default/production/Waveforms.o
+Sawtooth_Setup 1FA50 0 CODE 0 wave_code build/default/production/Waveforms.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -788,17 +791,17 @@ Sawtooth_Setup 1FA58 0 CODE 0 wave_code build/default/production/Waveforms.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-adc_code 0 1FA24 1FA24 30 1
-data%312 0 1FA86 1FA86 40 1
-data%315 0 1FA14 1FA14 10 1
-wave_code 0 1FA54 1FA54 32 1
-kb_code 0 1FBDE 1FBDE A4 1
+adc_code 0 1FA1C 1FA1C 30 1
+data%312 0 1FA7E 1FA7E 40 1
+data%315 0 1FA0C 1FA0C 10 1
+wave_code 0 1FA4C 1FA4C 32 1
+kb_code 0 1FBD6 1FBD6 A4 1
 adc_calibration_lcd 0 1FD8A 1FD8A 126 1
-data 0 1FAC6 1FAC6 7C 1
-lcd_help_code 0 1FC82 1FC82 108 1
+data 0 1FABE 1FABE 7C 1
+lcd_help_code 0 1FC7A 1FC7A 110 1
 udata_acs 1 0 0 2B 1
 lcd_code 0 1FEB0 1FEB0 150 1
-dac_code 0 1FB42 1FB42 9C 1
+dac_code 0 1FB3A 1FB3A 9C 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

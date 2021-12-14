@@ -179,8 +179,12 @@ WriteKey:
 	mullw	0x3
 	movff	PRODL, Index
 	
+	// Which scale to read based on bit 5
+	btfsc	PORTD, 5, A
 	call	SetMajorTable
-	//call	SetMinorTable
+	
+	btfss	PORTD, 5, A
+	call	SetMinorTable
 	
 	movf	Index, W
 	addwf	TBLPTRL, F
