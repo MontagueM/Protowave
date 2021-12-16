@@ -21,21 +21,22 @@ Sawtooth_Setup:
 	return
 	
 Do_Square:
-	// Read potentiometer value from ADC
-	call	ADC_Read
-	
 	// Increment square counter to keep track of where we are in generation
 	incf	Square_counter, F, A
-	
+
 	// Check if we need to swap to high if we're low
-	movf	Square_duty_cycle, 0
+	movf	Square_duty_cycle, W
 	cpfslt	Square_counter, A
 	movff	Square_high, LATJ
+	movf	Square_duty_cycle, W
+	cpfslt	Square_counter, A
 	
 	// Check if we need to swap to low if we're high
 	movlw	0x1
 	cpfsgt	Square_counter, A
 	movff	Square_low, LATJ
+	
+
 	return
 
 Square_Setup:

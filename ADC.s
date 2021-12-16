@@ -29,13 +29,13 @@ ADC_Close:
 	return
 	
 ADC_Read:
-	// If we're still set return and keep going
+	// If we're still set  return and keep going
 	btfsc   GO
 	return
 	// If we're clear read the top 8 bits and set to read again when possible
 	movf	ADRESH, W
 	movwf	Square_duty_cycle, A
-	bsf	GO
+	bsf	GO   
 	return
 
-end
+end    

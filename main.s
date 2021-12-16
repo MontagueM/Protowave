@@ -3,7 +3,7 @@
 extrn	DAC_Setup, DAC_Int_Hi
 extrn	LCD_Setup, LCD_Write_Message, LCD_Send_Byte_I
 extrn	KB_Setup, KB_main
-extrn	ADC_Setup
+extrn	ADC_Setup, ADC_Read
 extrn	LCD_main
     
 psect	code, abs
