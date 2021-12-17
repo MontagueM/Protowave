@@ -44,6 +44,20 @@ scaleTableMajor:
 	db	0x4a, 0x00
 	db	0x46, 0x00
 	align	2
+
+scaleTableSong:	
+db      0xbc, 0x00
+db      0x9e, 0x00
+db      0xee, 0x00
+db      0xd3, 0x00
+db      0xbc, 0x00
+db      0xb1, 0x00
+db      0xbc, 0x00
+db      0xd3, 0x00
+db      0xbc, 0x00
+db      0xd3, 0x00
+db      0x9e, 0x00
+	align	2
 	
 psect	dac_code, class=CODE
 DAC_Int_Hi:	
@@ -105,6 +119,7 @@ DAC_Setup:
 	movlw	0x0
 	movwf	bIs_Saw, A	; Default to square
 	call	Square_Setup
+	
 	return
 
 ReadMajorScale:
@@ -125,6 +140,15 @@ ReadMinorScale:
 	movwf	TBLPTRL, A		; load low byte to TBLPTRL
 	return
 
+ReadSongNotes:
+        movlw	low highword(scaleTableSong)	; address of data in PM
+	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
+	movlw	high(scaleTableSong)    ; address of data in PM
+	movwf	TBLPTRH, A		; load high byte to TBLPTRH
+	movlw	low(scaleTableSong)	    ; address of data in PM
+	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+	return
+	
 DAC_change_frequency:
 	// Take target from W
 	movff	KB_Fin, DAC_freq_index
@@ -136,6 +160,9 @@ DAC_change_frequency:
 	btfss	PORTD, 5, A
 	call	ReadMinorScale
 	
+	// Uncomment below to activate song mode
+	;call	ReadSongNotes
+
 	// Multiply by two and add to TBLPTR
 	rlncf	DAC_freq_index, W, A
 	addwf	TBLPTRL, F
@@ -146,7 +173,7 @@ DAC_change_frequency:
 	// Write the new frequency into CCP compare registers
 	tblrd*+
 	movff	TABLAT, CCPR4L
-	tblrd*
+	tblrd*+
 	movff	TABLAT, CCPR4H
 	
 	return

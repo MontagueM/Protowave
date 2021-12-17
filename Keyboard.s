@@ -9,6 +9,7 @@ KB_Val:ds 1
 KB_Col:ds 1
 KB_Row:ds 1
 KB_Fin:ds 1
+KB_Fin_Prev: ds 1
 KB_Pressed: ds 1
 KB_Fix: ds 1
 RET_status:	ds 1
@@ -106,7 +107,13 @@ Check_Key_Pressed:
 	movlw	0x00
 	cpfsgt	KB_Col
 	goto	Check_Key_Fail
+	
+	; check KB_Fin not same as last one
+	movlw	KB_Fin_Prev
+	subwf	KB_Fin, W, A
+	bz	Check_Key_Fail2
 
+	movff	KB_Fin, KB_Fin_Prev, A
 	retlw	0 ; success
     
 Check_Key_Fail:
@@ -114,6 +121,9 @@ Check_Key_Fail:
 	movwf	KB_Fin, A
 	retlw	1 ; fail
 	
+Check_Key_Fail2:
+	retlw	1 ; fail
+
 Decode_Keypress:
 	; Set pressed
 	movlw	0x01

@@ -11004,6 +11004,20 @@ scaleTableMajor:
  db 0x46, 0x00
  align 2
 
+scaleTableSong:
+db 0xbc, 0x00
+db 0x9e, 0x00
+db 0xee, 0x00
+db 0xd3, 0x00
+db 0xbc, 0x00
+db 0xb1, 0x00
+db 0xbc, 0x00
+db 0xd3, 0x00
+db 0xbc, 0x00
+db 0xd3, 0x00
+db 0x9e, 0x00
+ align 2
+
 psect dac_code, class=CODE
 DAC_Int_Hi:
  btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 4 interrupt
@@ -11064,6 +11078,7 @@ DAC_Setup:
  movlw 0x0
  movwf bIs_Saw, A ; Default to square
  call Square_Setup
+
  return
 
 ReadMajorScale:
@@ -11084,6 +11099,15 @@ ReadMinorScale:
  movwf TBLPTRL, A ; load low byte to TBLPTRL
  return
 
+ReadSongNotes:
+        movlw low highword(scaleTableSong) ; address of data in PM
+ movwf TBLPTRU, A ; load upper bits to TBLPTRU
+ movlw high(scaleTableSong) ; address of data in PM
+ movwf TBLPTRH, A ; load high byte to TBLPTRH
+ movlw low(scaleTableSong) ; address of data in PM
+ movwf TBLPTRL, A ; load low byte to TBLPTRL
+ return
+
 DAC_change_frequency:
 
  movff KB_Fin, DAC_freq_index
@@ -11095,6 +11119,8 @@ DAC_change_frequency:
  btfss PORTD, 5, A
  call ReadMinorScale
 
+ ;call ReadSongNotes
+
 
  rlncf DAC_freq_index, W, A
  addwf TBLPTRL, F
@@ -11105,7 +11131,7 @@ DAC_change_frequency:
 
  tblrd*+
  movff TABLAT, CCPR4L
- tblrd*
+ tblrd*+
  movff TABLAT, CCPR4H
 
  return
