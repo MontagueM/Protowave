@@ -1,45 +1,44 @@
 #include <xc.inc>
     
-global	KB_Setup, KB_main, RET_status, KB_Fin
-extrn	LCD_Write_Message, LCD_Setup, LCD_delay_ms
-extrn	DAC_change_frequency
+global	KB_Setup, KB_Main, return_status, kb_final
+extrn	LCD_Delay_MS
+extrn	DAC_Change_Frequency
 psect	udata_acs   ; reserve data space in access ram
 
-KB_Val:ds 1
-KB_Col:ds 1
-KB_Row:ds 1
-KB_Fin:ds 1
-KB_Fin_Prev: ds 1
-KB_Pressed: ds 1
-KB_Fix: ds 1
-RET_status:	ds 1
+kb_val:ds 1
+kb_col:ds 1
+kb_row:ds 1
+kb_final:ds 1
+kb_final_prev: ds 1
+kb_pressed: ds 1
+kb_fix: ds 1
+return_status:	ds 1
 
 psect	data    
 	; ******* myTable, data in programme memory, and its length *****
-myTable:	
+my_table:	
 	db	'A','B','C','D','E','F','G','A','A','B','C','D','E','F','G','A'
 	align	2
 	
-psect	kb_code,class=CODE
- 	;goto	KB_Setup
+psect	kb_code, class=CODE
 
 	; ******* Programme FLASH read Setup Code ***********************
 KB_Setup:	
 	bcf	CFGS	; point to Flash program memory  
 	bsf	EEPGD 	; access Flash program memory
 	movlw	3
-	movwf	KB_Fix
+	movwf	kb_fix
 	return
 
 	; ******* Main programme ****************************************
 
 
-KB_main:
+KB_Main:
 	call    Acquire_Keypress
 	call    Check_Key_Pressed
-	movwf	RET_status, A
+	movwf	return_status, A
 	movlw	0x0
-	cpfseq	RET_status, 0
+	cpfseq	return_status, 0
 	return
 	; If key pressed and is not prev key, continue
 	call    Decode_Keypress
@@ -48,9 +47,9 @@ KB_main:
     
 Acquire_Keypress:
 	movlw	0
-	movwf	KB_Row
+	movwf	kb_row
 	movlw	0
-	movwf	KB_Col
+	movwf	kb_col
 	
     
 	banksel PADCFG1
@@ -63,22 +62,22 @@ Acquire_Keypress:
 	
 	; delay?
 	movlw	1
-	call	LCD_delay_ms
+	call	LCD_Delay_MS
 	
 	; Drive output bits low all at once
 	movlw	0x00
 	movwf	PORTE, A
 	
 	; Read 4 PORTE input pins
-	movff 	PORTE, KB_Col
+	movff 	PORTE, kb_col
 
 	; Invert the pins to show only the pressed ones
 	movlw	0x0F
-	xorwf	KB_Col, 1
+	xorwf	kb_col, 1
 	
 	; If no column pressed return
 	movlw	0x00
-	cpfsgt	KB_Col
+	cpfsgt	kb_col
 	return
 	
 	; Configure bits 0-3 output, 4-7 input
@@ -86,7 +85,7 @@ Acquire_Keypress:
 	movwf	TRISE
 	
 	movlw	1
-	call	LCD_delay_ms
+	call	LCD_Delay_MS
 	
 	; Drive output bits low all at once
 	movlw	0x00
@@ -94,10 +93,10 @@ Acquire_Keypress:
 	
 	
 	; Read4 PORTE input pins
-	movff 	PORTE, KB_Row
-	swapf	KB_Row, 1
+	movff 	PORTE, kb_row
+	swapf	kb_row, 1
 	movlw	0x0F
-	xorwf	KB_Row, 1
+	xorwf	kb_row, 1
 
 
 	return
@@ -105,20 +104,20 @@ Acquire_Keypress:
 Check_Key_Pressed:
 	; check KB_val is not zero
 	movlw	0x00
-	cpfsgt	KB_Col
+	cpfsgt	kb_col
 	goto	Check_Key_Fail
 	
 	; check KB_Fin not same as last one
-	movlw	KB_Fin_Prev
-	subwf	KB_Fin, W, A
+	movlw	kb_final_prev
+	subwf	kb_final, W, A
 	bz	Check_Key_Fail2
 
-	movff	KB_Fin, KB_Fin_Prev, A
+	movff	kb_final, kb_final_prev, A
 	retlw	0 ; success
     
 Check_Key_Fail:
 	movlw	0xFF
-	movwf	KB_Fin, A
+	movwf	kb_final, A
 	retlw	1 ; fail
 	
 Check_Key_Fail2:
@@ -127,39 +126,38 @@ Check_Key_Fail2:
 Decode_Keypress:
 	; Set pressed
 	movlw	0x01
-	movwf	KB_Pressed
+	movwf	kb_pressed
     
     	; Decode results to determine
 	; Print results to PORTD
 	
 	; starts at 1, need to start at 0
 	bcf     STATUS, 0
-	rrcf	KB_Col, 1
+	rrcf	kb_col, 1
 	bcf     STATUS, 0
-	rrcf	KB_Row, 1
+	rrcf	kb_row, 1
 	
 	; Fix if value is 4, needs to be 3
 	movlw	4
-	cpfslt	KB_Row
-	movff	KB_Fix, KB_Row
+	cpfslt	kb_row
+	movff	kb_fix, kb_row
 	movlw	4
-	cpfslt	KB_Col
-	movff	KB_Fix, KB_Col
+	cpfslt	kb_col
+	movff	kb_fix, kb_col
 	
 	; KB_Col + 4 * KB_Row
-	movf	KB_Row, 0
-	addwf	KB_Row, 0
-	addwf	KB_Row, 0
-	addwf	KB_Row, 0
+	movf	kb_row, 0
+	addwf	kb_row, 0
+	addwf	kb_row, 0
+	addwf	kb_row, 0
 	bcf     STATUS, 0
-	addwfc	KB_Col, 0
-	movwf	KB_Fin, A
+	addwfc	kb_col, 0
+	movwf	kb_final, A
 
 	return
     
 Display_Keypress:
-    	//movf	KB_Fin, 0
-	call	DAC_change_frequency
+	call	DAC_Change_Frequency
 	return
 
     end

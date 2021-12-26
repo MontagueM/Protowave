@@ -1,14 +1,14 @@
 #include <xc.inc>
 
-global  LCD_Setup, LCD_delay_ms, LCD_Write_Message, LCD_Send_Byte_I, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms, LCD_Clear_Display2
-global	SetTwoLines
-psect	udata_acs   ; named variables in access ram
-LCD_cnt_l:	ds 1	; reserve 1 byte for variable LCD_cnt_l
-LCD_cnt_h:	ds 1	; reserve 1 byte for variable LCD_cnt_h
-LCD_cnt_ms:	ds 1	; reserve 1 byte for ms counter
-LCD_tmp:	ds 1	; reserve 1 byte for temporary use
-LCD_counter:	ds 1	; reserve 1 byte for counting through nessage
-TwoLineCounter: ds 1
+global		    LCD_Setup, LCD_Delay_MS, LCD_Write_Message, LCD_Send_Byte_I, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_Clear_Display2
+global		    Set_Two_Lines
+psect		    udata_acs
+LCD_cnt_l:	    ds 1
+LCD_cnt_h:	    ds 1
+LCD_cnt_ms:	    ds 1
+LCD_tmp:	    ds 1
+LCD_counter:	    ds 1
+two_line_counter:   ds 1
     
 PSECT	udata_acs_ovr,space=1,ovrld,class=COMRAM
 LCD_hex_tmp:	ds 1    ; reserve 1 byte for variable LCD_hex_tmp
@@ -23,7 +23,7 @@ LCD_Setup:
 	movlw   11000000B	    ; RB0:5 all outputs
 	movwf	TRISB, A
 	movlw   40
-	call	LCD_delay_ms	; wait 40ms for LCD to start up properly
+	call	LCD_Delay_MS	; wait 40ms for LCD to start up properly
 	movlw	00110000B	; Function set 4-bit
 	call	LCD_Send_Byte_I
 	movlw	10		; wait 40us
@@ -43,21 +43,21 @@ LCD_Setup:
 	movlw	00000001B	; display clear
 	call	LCD_Send_Byte_I
 	movlw	2		; wait 2ms
-	call	LCD_delay_ms
+	call	LCD_Delay_MS
 	movlw	00000110B	; entry mode incr by 1 no shift
 	call	LCD_Send_Byte_I
 	movlw	10		; wait 40us
 	call	LCD_delay_x4us
 	
 	movlw	0x10
-	movwf	TwoLineCounter, A
+	movwf	two_line_counter, A
 	return
 
 LCD_Clear_Display: 
 	movlw	00000001B	; display clear
 	call	LCD_Send_Byte_I
 	movlw	2		; wait 2ms
-	call	LCD_delay_ms
+	call	LCD_Delay_MS
 	movlw	00000110B	; entry mode incr by 1 no shift
 	call	LCD_Send_Byte_I
 	movlw	10		; wait 40us
@@ -94,14 +94,12 @@ LCD_Loop_message:
 	decfsz  LCD_counter, A
 	bra	LCD_Loop_message
 	movlw	1
-	call	LCD_delay_ms
-	dcfsnz	TwoLineCounter, A
-	bra	SetTwoLines
-	;movlw	5000
-	;call LCD_delay_ms
+	call	LCD_Delay_MS
+	dcfsnz	two_line_counter, A
+	bra	Set_Two_Lines
 	return
 	
-SetTwoLines:
+Set_Two_Lines:
 	movlw	11000000B
 	call	LCD_Send_Byte_I
 	
@@ -160,7 +158,7 @@ LCD_Enable:	    ; pulse enable bit LCD_E for 500ns
 	return
     
 ; ** a few delay routines below here as LCD timing can be quite critical ****
-LCD_delay_ms:		    ; delay given in ms in W
+LCD_Delay_MS:		    ; delay given in ms in W
 	movwf	LCD_cnt_ms, A
 lcdlp2:	movlw	250	    ; 1 ms delay
 	call	LCD_delay_x4us	

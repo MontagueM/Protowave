@@ -1,28 +1,27 @@
 #include <xc.inc>
 
-extrn	LCD_Setup, LCD_Write_Message, LCD_Send_Byte_D, LCD_Write_Hex, LCD_Clear_Display, LCD_delay_ms ; external LCD subroutines
-extrn	ADC_Setup, ADC_Read		   ; external ADC subroutines
-global	ADC_LCD_Setup, ADC_LCD_run, check_change_for_lcd
-psect	udata_acs   ; reserve data space in access ram
-counter:    ds 1    ; reserve one byte for a counter variable
-delay_count:ds 1    ; reserve one byte for counter in the delay routine
-ARG1L:    ds 1
-ARG1H:    ds 1
-ARG2L:    ds 1
-ARG2H:    ds 1
-ARG2U:    ds 1
-RES0:    ds 1
-RES1:    ds 1
-RES2:    ds 1
-RES3:    ds 1
-DIG0:    ds 1
-DIG1:    ds 1
-DIG2:    ds 1
-DIG3:    ds 1
+extrn		LCD_Send_Byte_D
+extrn		ADC_Read
+global		ADC_LCD_Setup, ADC_LCD_Run, Check_Change_For_LCD
+psect		udata_acs		    
+counter:	ds 1
+delay_count:	ds 1
+ARG1L:		ds 1
+ARG1H:		ds 1
+ARG2L:		ds 1
+ARG2H:		ds 1
+ARG2U:		ds 1
+RES0:		ds 1
+RES1:		ds 1
+RES2:		ds 1
+RES3:		ds 1
+DIG0:		ds 1
+DIG1:		ds 1
+DIG2:		ds 1
+DIG3:		ds 1
 current_dig:    ds 1
-OldADRESH:  ds 1
-TmpADRESH:  ds 1
-;current_dig:ds 1
+old_ADRESH:	ds 1
+tmp_ADRESH:	ds 1
 
 
     
@@ -37,7 +36,7 @@ ADC_LCD_Setup:
 	movwf	current_dig
 	return
 
-SetupMultiply16x16:
+Setup_Multiply_16x16:
 	movff	ADRESL, ARG1L	
 	movff	ADRESH, ARG1H
 	//put the ADRESH back to left justified
@@ -57,69 +56,69 @@ SetupMultiply16x16:
 	movwf	ARG2H
 	return
 
-Multiply16x16:
-	MOVF ARG1L, W
-	MULWF ARG2L ; ARG1L * ARG2L->
-	; PRODH:PRODL
-	MOVFF PRODH, RES1 ;
-	MOVFF PRODL, RES0 ;
-	;
-	MOVF ARG1H, W
-	MULWF ARG2H ; ARG1H * ARG2H->
-	; PRODH:PRODL
-	MOVFF PRODH, RES3 ;
-	MOVFF PRODL, RES2 ;
-	;
-	MOVF ARG1L, W
-	MULWF ARG2H ; ARG1L * ARG2H->
-	; PRODH:PRODL
-	MOVF PRODL, W ;
-	ADDWF RES1, F ; Add cross
-	MOVF PRODH, W ; products
-	ADDWFC RES2, F ;
-	CLRF WREG ;
-	ADDWFC RES3, F ;
-	;
-	MOVF ARG1H, W ;
-	MULWF ARG2L ; ARG1H * ARG2L->
-	; PRODH:PRODL
-	MOVF PRODL, W ;
-	ADDWF RES1, F ; Add cross
-	MOVF PRODH, W ; products
-	ADDWFC RES2, F ;
-	CLRF WREG ;
-	ADDWFC RES3, F ; 
+Multiply_16x16:
+	movf	ARG1L, W
+	mulwf	ARG2L		; ARG1L * ARG2L -> PRODH:PRODL
+
+	movff	PRODH, RES1 
+	movff	PRODL, RES0 
+
+	movf	ARG1H, W
+	mulwf	ARG2H		; ARG1H * ARG2H -> PRODH:PRODL
+
+	movff	PRODH, RES3 
+	movff	PRODL, RES2 
+
+	movf	ARG1L, W
+	mulwf	ARG2H		; ARG1L * ARG2H -> PRODH:PRODL
+
+	movf	PRODL, W
+	addwf	RES1, F		; Add cross products
+	movf	PRODH, W
+	addwfc	RES2, F 
+	clrf	WREG 
+	addwfc	RES3, F 
+
+	movf	ARG1H, W 
+	mulwf	ARG2L		; ARG1H * ARG2L -> PRODH:PRODL
+
+	movf	PRODL, W 
+	addwf	RES1, F		; Add cross
+	movf	PRODH, W	; products
+	addwfc	RES2, F 
+	clrf	WREG
+	addwfc	RES3, F
 	return
 
-Multiply8x24:
-	MOVF ARG1L, W
-	MULWF ARG2L ; ARG1L * ARG2L->
-	; PRODH:PRODL
-	MOVFF PRODH, RES1 ; 
-	MOVFF PRODL, RES0 ;
-	;
-	MOVF ARG1L, W
-	MULWF ARG2H ; ARG1H * ARG2H->
-	; PRODH:PRODL
-	MOVF PRODL, W
-	ADDWF RES1, F	; PRODL + RES1--> RES1
-	MOVFF PRODH, RES2 ;
-	; 
-	MOVF ARG1L, W
-	MULWF ARG2U ; ARG1H * ARG2H->
-	; PRODH:PRODL
-	MOVF PRODL, W
-	ADDWFC RES2, F ; PRODL + RES2 + carry bit --> RES2
-	MOVLW 0x0
-	ADDWFC	PRODH, F ; add the carry bit to RES3 (highest byte)
-	MOVFF PRODH, RES3 ; 
+Multiply_8x24:
+	movf	ARG1L, W
+	mulwf	ARG2L		; ARG1L * ARG2L -> PRODH:PRODL
+
+	movff	PRODH, RES1
+	movff	PRODL, RES0
+
+	movf	ARG1L, W
+	mulwf	ARG2H		; ARG1H * ARG2H-> PRODH:PRODL
+
+	movf	PRODL, W
+	addwf	RES1, F		; PRODL + RES1--> RES1
+	movff	PRODH, RES2	
+
+	movf	ARG1L, W
+	mulwf	ARG2U		; ARG1H * ARG2H -> PRODH:PRODL
+
+	movf	PRODL, W
+	addwfc	RES2, F		; PRODL + RES2 + carry bit --> RES2
+	movlw	0x0
+	addwfc	PRODH, F	; add the carry bit to RES3 (highest byte)
+	movff	PRODH, RES3
 	return
 
-GetDigits:
+Get_Digits:
 	; Setup 16x16
-	call	SetupMultiply16x16
+	call	Setup_Multiply_16x16
 	; Do 16x16 mult
-	call	Multiply16x16
+	call	Multiply_16x16
 	; Set first digit
 	movf	RES3, W
 	movwf	DIG0, F
@@ -135,7 +134,7 @@ GetDigits:
 	movf	RES2, W
 	movwf	ARG2U, F
 	; Do 8x24 mult and set each digit three times
-	call	Multiply8x24
+	call	Multiply_8x24
 	;  set digit
 	movf	RES3, W
 	movwf	DIG1, F
@@ -146,7 +145,7 @@ GetDigits:
 	movwf	ARG2H, F
 	movf	RES2, W
 	movwf	ARG2U, F
-	call	Multiply8x24
+	call	Multiply_8x24
 	;  set digit
 	movf	RES3, W
 	movwf	DIG2, F
@@ -157,7 +156,7 @@ GetDigits:
 	movwf	ARG2H, F
 	movf	RES2, W
 	movwf	ARG2U, F
-	call	Multiply8x24
+	call	Multiply_8x24
 	;  set digit
 	movf	RES3, W
 	movwf	DIG3, F
@@ -171,28 +170,28 @@ GetDigits:
 	return
 
 	; ******* Main programme ****************************************
-ADC_LCD_run: 	
-	call	GetDigits
-	call	write_DC
+ADC_LCD_Run: 	
+	call	Get_Digits
+	call	Write_DC
 	
 	return
 	
-check_change_for_lcd:
+Check_Change_For_LCD:
 	call	ADC_Read
-	movff	ADRESH, TmpADRESH
+	movff	ADRESH, tmp_ADRESH
 	movlw	11111100B
-	andwf	TmpADRESH, F, A
-	movf	TmpADRESH, W
-	subwf	OldADRESH, W
-	bz	check_return_for_LCD	
+	andwf	tmp_ADRESH, F, A
+	movf	tmp_ADRESH, W
+	subwf	old_ADRESH, W
+	bz	Check_Return_For_LCD	
 	
-	movff	TmpADRESH, OldADRESH
+	movff	tmp_ADRESH, old_ADRESH
 	retlw	0
 	
-check_return_for_LCD:
+Check_Return_For_LCD:
 	retlw	1
 
-write_DC:
+Write_DC:
 	movf	DIG0, W	
 	call	LCD_Send_Byte_D
 	movf	DIG1, W	

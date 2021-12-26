@@ -1,8 +1,8 @@
 #include <xc.inc>
 
-global  ADC_Setup, ADC_Read, ADC_Close
-extrn	Square_duty_cycle
-psect	adc_code, class=CODE
+global	    ADC_Setup, ADC_Read, ADC_Close
+extrn	    square_duty_cycle
+psect	    adc_code, class=CODE
     
 ADC_Setup:
 	bsf	TRISA, PORTA_RA0_POSN, A  ; pin RA0==AN0 input
@@ -34,7 +34,7 @@ ADC_Read:
 	return
 	// If we're clear read the top 8 bits and set to read again when possible
 	movf	ADRESH, W
-	movwf	Square_duty_cycle, A
+	movwf	square_duty_cycle, A
 	bsf	GO   
 	return
 

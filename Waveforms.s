@@ -1,15 +1,13 @@
 #include <xc.inc>
 	
-global	Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, Square_duty_cycle
-extrn	ADC_Read, ADC_Setup, ADC_Close
-psect	udata_acs   ; named variables in access ram
-Square_counter: ds 1
-Square_high:	ds 1
-Square_low:	ds 1
-Square_duty_cycle: ds 1
+global		Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, square_duty_cycle
 
-psect data
-    
+psect		    udata_acs
+square_counter:	    ds 1
+square_high:	    ds 1
+square_low:	    ds 1
+square_duty_cycle:  ds 1
+
 psect	wave_code, class=CODE
 
 Do_Sawtooth:
@@ -22,19 +20,19 @@ Sawtooth_Setup:
 	
 Do_Square:
 	// Increment square counter to keep track of where we are in generation
-	incf	Square_counter, F, A
+	incf	square_counter, F, A
 
 	// Check if we need to swap to high if we're low
-	movf	Square_duty_cycle, W
-	cpfslt	Square_counter, A
-	movff	Square_high, LATJ
-	movf	Square_duty_cycle, W
-	cpfslt	Square_counter, A
+	movf	square_duty_cycle, W
+	cpfslt	square_counter, A
+	movff	square_high, LATJ
+	movf	square_duty_cycle, W
+	cpfslt	square_counter, A
 	
 	// Check if we need to swap to low if we're high
 	movlw	0x1
-	cpfsgt	Square_counter, A
-	movff	Square_low, LATJ
+	cpfsgt	square_counter, A
+	movff	square_low, LATJ
 	
 
 	return
@@ -42,15 +40,15 @@ Do_Square:
 Square_Setup:
 	// Default duty cycle as 50%
 	movlw	128
-	movwf	Square_duty_cycle, A
+	movwf	square_duty_cycle, A
 	// Max volume
 	movlw	0xFF
-	movwf	Square_high, A
+	movwf	square_high, A
 	// Zero minimum
 	movlw	0x00
-	movwf	Square_low, A
+	movwf	square_low, A
 	// Begin low
-	movff	Square_low, LATJ
+	movff	square_low, LATJ
 	return
 	
 	end

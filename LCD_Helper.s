@@ -1,19 +1,19 @@
 #include <xc.inc>
     
-global	LCD_main
-extrn	LCD_Write_Message, LCD_Clear_Display, LCD_Clear_Display2, LCD_delay_ms
-extrn	SetTwoLines
-extrn	ADC_LCD_Setup, ADC_LCD_run, ADC_Read, check_change_for_lcd
-extrn	KB_Fin
-psect	udata_acs   ; named variables in access ram
-LCD_STATUS: ds 1
-OldState:   ds 1
-OldKey:	    ds 1
-Index:	    ds 1
-Tmp:	    ds 1
+global		LCD_Main
+extrn		LCD_Write_Message, LCD_Clear_Display
+extrn		Set_Two_Lines
+extrn		ADC_LCD_Setup, ADC_LCD_Run, Check_Change_For_LCD
+extrn		kb_final
+psect		udata_acs
+lcd_status:	ds 1
+old_state:	ds 1
+old_key:	ds 1
+index:		ds 1
+tmp:		ds 1
 psect data
  
- Maj:
+major_key_lcd_table:
     db    ' ', 'A', '3'
     db    ' ', 'B', '3'
     db    'C', '#', '4'
@@ -32,7 +32,7 @@ psect data
     db    ' ', 'A', '5'
     align   2
     
-Min:
+minor_key_lcd_table:
     db    ' ', 'A', '3'
     db    ' ', 'B', '3'
     db    ' ', 'C', '4'
@@ -51,7 +51,7 @@ Min:
     db    ' ', 'A', '5'
     align   2
     
- DisplayTable:
+ display_lcd_table:
     db	    'W','F',':'	    ;0
     db	    'S','Q','U'	    ;1
     db	    ' ', ' ',' '    ;2
@@ -64,19 +64,19 @@ Min:
     align   2
 
 psect	lcd_help_code, class=CODE
-WriteDisplay:
+Write_Display:
 	mullw	0x3
-	movff	PRODL, Index
+	movff	PRODL, index
 	
     	; read the corresponding value
-	movlw	low highword(DisplayTable)	; address of data in PM
-	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(DisplayTable)	; address of data in PM
-	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(DisplayTable)	; address of data in PM
-	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+	movlw	low highword(display_lcd_table)	; address of data in PM
+	movwf	TBLPTRU, A			; load upper bits to TBLPTRU
+	movlw	high(display_lcd_table)		; address of data in PM
+	movwf	TBLPTRH, A			; load high byte to TBLPTRH
+	movlw	low(display_lcd_table)		; address of data in PM
+	movwf	TBLPTRL, A			; load low byte to TBLPTRL
 	
-	movf	Index, W
+	movf	index, W
 	addwf	TBLPTRL, F
 	movlw	0x0
 	addwfc	TBLPTRH, F
@@ -86,128 +86,125 @@ WriteDisplay:
 	call	LCD_Write_Message
 	return
 
-LCD_main:
+LCD_Main:
 	// Check status has changed
-	movff	PORTD, LCD_STATUS
+	movff	PORTD, lcd_status
 	movlw	0x60
-	andwf	LCD_STATUS, F, A
-	movf	LCD_STATUS, W
+	andwf	lcd_status, F, A
+	movf	lcd_status, W
 	// If status has changed, write new string to LCD
-	cpfseq	OldState, A
-	call	ChangeLCD
+	cpfseq	old_state, A
+	call	Change_LCD
 	
-	movff	LCD_STATUS, OldState
+	movff	lcd_status, old_state
 	
 	// If ADC has changed, write new string to LCD
-	call	check_change_for_lcd
-	movwf	Tmp, A
+	call	Check_Change_For_LCD
+	movwf	tmp, A
 	movlw	0x1
-	cpfseq	Tmp
-	call	ChangeLCD
+	cpfseq	tmp
+	call	Change_LCD
 	
 	// If keyboard key has changed, write new string to LCD
 	call	Check_Key_Change
-	movwf	Tmp, A
+	movwf	tmp, A
 	movlw	0x1
-	cpfseq	Tmp
-	call	ChangeLCD
-LCD_ret:
+	cpfseq	tmp
+	call	Change_LCD
+
 	return
 
-LCD_suc:
-	//call	
-	return
 	
 Check_Key_Change:
-	movf	KB_Fin, W
-	subwf	OldKey, W, A
-	bz	ret_fail
+	movf	kb_final, W
+	subwf	old_key, W, A
+	bz	Ret_Fail
 	// Set old key to new key and return success to update screen
-	movff	KB_Fin, OldKey
+	movff	kb_final, old_key
 	retlw	0
-ret_fail:
+Ret_Fail:
 	retlw	1
 	
-WriteWave:
+Write_Wave:
 	movlw	0x0
-	call	WriteDisplay
+	call	Write_Display
 	return
 
-WriteSquare:
+Write_Square:
 	movlw	0x1
-	call	WriteDisplay
-	call	WriteEmpty
+	call	Write_Display
+	call	Write_Empty
 	movlw	0x3
-	call    WriteDisplay
+	call    Write_Display
 	call	ADC_LCD_Setup
-	call	ADC_LCD_run
+	call	ADC_LCD_Run
 	return
 
-WriteEmpty:
+Write_Empty:
     	movlw	0x2
-	call	WriteDisplay
+	call	Write_Display
 	return
 	
-WriteSaw:
+Write_Saw:
 	movlw	0x4
-	call	WriteDisplay
+	call	Write_Display
 	return
 		
-WriteScale:
+Write_Scale:
 	movlw	0x5
-	call	WriteDisplay
+	call	Write_Display
 	return
 	
-WriteMin:
+Write_Min:
 	movlw	0x6
-	call	WriteDisplay
+	call	Write_Display
 	return
 	
-WriteMaj:
+Write_Maj:
 	movlw	0x7
-	call	WriteDisplay
+	call	Write_Display
 	return
 
-SetMinorTable:
+Set_Minor_Table:
         	; read the corresponding value
-	movlw	low highword(Min)	; address of data in PM
+	movlw	low highword(minor_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(Min)	; address of data in PM
+	movlw	high(minor_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(Min)	; address of data in PM
+	movlw	low(minor_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRL, A		; load low byte to TBLPTRL
 	return
 	
-SetMajorTable:
+Set_Major_Table:
         	; read the corresponding value
-	movlw	low highword(Maj)	; address of data in PM
+	movlw	low highword(major_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(Maj)	; address of data in PM
+	movlw	high(major_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(Maj)	; address of data in PM
+	movlw	low(major_key_lcd_table)	; address of data in PM
 	movwf	TBLPTRL, A		; load low byte to TBLPTRL
 	return
 	
-WriteKey:
+Write_Key:
 	movlw	0x8
-	call	WriteDisplay
+	call	Write_Display
 	
 	movlw	0xFF
-	cpfslt	KB_Fin
-	goto	WriteEmpty
+	cpfslt	kb_final
+	goto	Write_Empty
 	
-	movf	KB_Fin, W
+	movf	kb_final, W
 	mullw	0x3
-	movff	PRODL, Index
+	movff	PRODL, index
 	
 	// Which scale to read based on bit 5
 	btfsc	PORTD, 5, A
-	call	SetMajorTable
+	call	Set_Major_Table
 	
 	btfss	PORTD, 5, A
-	call	SetMinorTable
+	call	Set_Minor_Table
 	
-	movf	Index, W
+	movf	index, W
 	addwf	TBLPTRL, F
 	movlw	0x0
 	addwfc	TBLPTRH, F
@@ -219,25 +216,25 @@ WriteKey:
 	
 	return
 	
-ChangeLCD:
+Change_LCD:
     	call	LCD_Clear_Display
-    	call	WriteWave
+    	call	Write_Wave
 
 	btfsc	PORTD, 6, A
-   	call	WriteSaw
+   	call	Write_Saw
 	btfss	PORTD, 6, A
-	call	WriteSquare
+	call	Write_Square
 
-	call	SetTwoLines
-	call	WriteScale
+	call	Set_Two_Lines
+	call	Write_Scale
 
 	btfsc	PORTD, 5, A
-	call	WriteMaj
+	call	Write_Maj
 	btfss	PORTD, 5, A
-	call	WriteMin
+	call	Write_Min
 	
-	call	WriteEmpty
-	call	WriteKey
+	call	Write_Empty
+	call	Write_Key
 	
 	return
 	end

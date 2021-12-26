@@ -10959,14 +10959,14 @@ ENDM
 # 1 "DAC_Interrupt.s" 2
 
 
-global DAC_Setup, DAC_Int_Hi, DAC_change_frequency
-extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, RET_status, KB_Fin
-psect udata_acs ; named variables in access ram
-DAC_freq_index: ds 1
-bIs_Saw: ds 1
+global DAC_Setup, DAC_Interrupt_High, DAC_Change_Frequency
+extrn Do_Sawtooth, Do_Square, Sawtooth_Setup, Square_Setup, return_status, kb_final
+psect udata_acs
+dac_freq_index: ds 1
+b_is_sawtooth: ds 1
 psect data
 
-scaleTableMinor:
+scale_table_minor:
  db 0x1b, 0x01
  db 0xfc, 0x00
  db 0xee, 0x00
@@ -10985,7 +10985,7 @@ scaleTableMinor:
  db 0x46, 0x00
  align 2
 
-scaleTableMajor:
+scale_table_major:
  db 0x1b, 0x01
  db 0xfc, 0x00
  db 0xe0, 0x00
@@ -11004,22 +11004,22 @@ scaleTableMajor:
  db 0x46, 0x00
  align 2
 
-scaleTableSong:
-db 0xbc, 0x00
-db 0x9e, 0x00
-db 0xee, 0x00
-db 0xd3, 0x00
-db 0xbc, 0x00
-db 0xb1, 0x00
-db 0xbc, 0x00
-db 0xd3, 0x00
-db 0xbc, 0x00
-db 0xd3, 0x00
-db 0x9e, 0x00
+scale_table_song:
+ db 0xbc, 0x00
+ db 0x9e, 0x00
+ db 0xee, 0x00
+ db 0xd3, 0x00
+ db 0xbc, 0x00
+ db 0xb1, 0x00
+ db 0xbc, 0x00
+ db 0xd3, 0x00
+ db 0xbc, 0x00
+ db 0xd3, 0x00
+ db 0x9e, 0x00
  align 2
 
 psect dac_code, class=CODE
-DAC_Int_Hi:
+DAC_Interrupt_High:
  btfss ((PIR4) and 0FFh), 1, a ; check that this is ccp timer 4 interrupt
  retfie f ; if not then return
  bcf ((PIR4) and 0FFh), 1, a ; clear the ((PIR4) and 0FFh), 1, a flag
@@ -11029,7 +11029,7 @@ DAC_Int_Hi:
  andwf PORTD, W, A
 
  movlw 0x0
- cpfseq RET_status, 0
+ cpfseq return_status, 0
  retfie f
 
 
@@ -11062,8 +11062,6 @@ DAC_Setup:
  movwf T1CON
 
  bcf ((CCPTMRS1) and 0FFh), 1, b
-
-
  movlw 00001011B
  movwf CCP4CON
  movlw 0xee
@@ -11076,53 +11074,54 @@ DAC_Setup:
  bsf ((INTCON) and 0FFh), 6, a
 
  movlw 0x0
- movwf bIs_Saw, A ; Default to square
+ movwf b_is_sawtooth, A ; Default to square
  call Square_Setup
 
  return
 
-ReadMajorScale:
-     movlw low highword(scaleTableMajor) ; address of data in PM
+Read_Major_Scale:
+     movlw low highword(scale_table_major) ; address of data in PM
  movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scaleTableMajor) ; address of data in PM
+ movlw high(scale_table_major) ; address of data in PM
  movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scaleTableMajor) ; address of data in PM
+ movlw low(scale_table_major) ; address of data in PM
  movwf TBLPTRL, A ; load low byte to TBLPTRL
  return
 
-ReadMinorScale:
-     movlw low highword(scaleTableMinor) ; address of data in PM
+Read_Minor_Scale:
+     movlw low highword(scale_table_minor) ; address of data in PM
  movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scaleTableMinor) ; address of data in PM
+ movlw high(scale_table_minor) ; address of data in PM
  movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scaleTableMinor) ; address of data in PM
+ movlw low(scale_table_minor) ; address of data in PM
  movwf TBLPTRL, A ; load low byte to TBLPTRL
  return
 
-ReadSongNotes:
-        movlw low highword(scaleTableSong) ; address of data in PM
+Read_Song_Notes:
+        movlw low highword(scale_table_song) ; address of data in PM
  movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scaleTableSong) ; address of data in PM
+ movlw high(scale_table_song) ; address of data in PM
  movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scaleTableSong) ; address of data in PM
+ movlw low(scale_table_song) ; address of data in PM
  movwf TBLPTRL, A ; load low byte to TBLPTRL
  return
 
-DAC_change_frequency:
+DAC_Change_Frequency:
 
- movff KB_Fin, DAC_freq_index
+ movff kb_final, dac_freq_index
 
 
  btfsc PORTD, 5, A
- call ReadMajorScale
+ call Read_Major_Scale
 
  btfss PORTD, 5, A
- call ReadMinorScale
-
- ;call ReadSongNotes
+ call Read_Minor_Scale
 
 
- rlncf DAC_freq_index, W, A
+ ;call Read_Song_Notes
+
+
+ rlncf dac_freq_index, W, A
  addwf TBLPTRL, F
  movlw 0x0
  addwfc TBLPTRH, F
