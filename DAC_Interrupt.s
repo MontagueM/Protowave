@@ -61,9 +61,9 @@ scale_table_song:
 	
 psect	dac_code, class=CODE
 DAC_Interrupt_High:	
-	btfss	CCP4IF		; check that this is ccp timer 4 interrupt
-	retfie	f		; if not then return
-	bcf	CCP4IF	        ; clear the CCP4IF flag
+	btfss	CCP4IF			; check that this is ccp timer 4 interrupt
+	retfie	f			; if not then return
+	bcf	CCP4IF			; clear the CCP4IF flag
 	
 	// Check if we need to do a setup
 	movlw	0x40
@@ -80,23 +80,23 @@ DAC_Interrupt_High:
 	btfss	PORTD, 6, A
 	call	Do_Square
 	
-	; Set CS* and WR* low
-	movlw	0x0
+	
+	movlw	0x0		    ; Set CS* and WR* low
 	movwf	PORTD
-	; Set CS* and WR* high
-	movlw	0x1 | 0x2
+				    
+	movlw	0x1 | 0x2	    ; Set CS* and WR* high
 	movwf	PORTD
-	retfie	f		; fast return from interrupt
+	retfie	f		    ; fast return from interrupt
     
 DAC_Setup:
-	clrf	TRISD, A	; Control line set all outputs for WR*
-	clrf	TRISJ, A	; Set PORTJ as all outputs
-	clrf	LATD, A		; Clear PORTC outputs
-	clrf	LATJ, A		; Clear PORTJ outputs
+	clrf	TRISD, A	    ; Control line set all outputs for WR*
+	clrf	TRISJ, A	    ; Set PORTJ as all outputs
+	clrf	LATD, A		    ; Clear PORTC outputs
+	clrf	LATJ, A		    ; Clear PORTJ outputs
 	movlw	01100000B
 	movwf	TRISD, A
-	; Set both CS* and WR* to high
-	movlw	0x1 | 0x2
+	
+	movlw	0x1 | 0x2	    ; Set both CS* and WR* to high
 	movwf	PORTD
 	
 	movlw	00000001B
@@ -115,36 +115,36 @@ DAC_Setup:
 	bsf	PEIE
 	
 	movlw	0x0
-	movwf	b_is_sawtooth, A	; Default to square
+	movwf	b_is_sawtooth, A    ; Default to square
 	call	Square_Setup
 	
 	return
 
 Read_Major_Scale:
-    	movlw	low highword(scale_table_major)	; address of data in PM
-	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(scale_table_major)    ; address of data in PM
-	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(scale_table_major)	    ; address of data in PM
-	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+    	movlw	low highword(scale_table_major)
+	movwf	TBLPTRU, A
+	movlw	high(scale_table_major)
+	movwf	TBLPTRH, A
+	movlw	low(scale_table_major)
+	movwf	TBLPTRL, A
 	return
 	
 Read_Minor_Scale:
-    	movlw	low highword(scale_table_minor)	; address of data in PM
-	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(scale_table_minor)    ; address of data in PM
-	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(scale_table_minor)	    ; address of data in PM
-	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+    	movlw	low highword(scale_table_minor)
+	movwf	TBLPTRU, A
+	movlw	high(scale_table_minor)
+	movwf	TBLPTRH, A
+	movlw	low(scale_table_minor)
+	movwf	TBLPTRL, A
 	return
 
 Read_Song_Notes:
-        movlw	low highword(scale_table_song)	; address of data in PM
-	movwf	TBLPTRU, A		; load upper bits to TBLPTRU
-	movlw	high(scale_table_song)    ; address of data in PM
-	movwf	TBLPTRH, A		; load high byte to TBLPTRH
-	movlw	low(scale_table_song)	    ; address of data in PM
-	movwf	TBLPTRL, A		; load low byte to TBLPTRL
+        movlw	low highword(scale_table_song)
+	movwf	TBLPTRU, A
+	movlw	high(scale_table_song)
+	movwf	TBLPTRH, A
+	movlw	low(scale_table_song)
+	movwf	TBLPTRL, A
 	return
 	
 DAC_Change_Frequency:
@@ -161,7 +161,7 @@ DAC_Change_Frequency:
 	// Uncomment below to activate song mode
 	;call	Read_Song_Notes
 
-	// Multiply by two and add to TBLPTR
+	// Multiply by two and add to TBLPTR as 2-wide array
 	rlncf	dac_freq_index, W, A
 	addwf	TBLPTRL, F
 	movlw	0x0

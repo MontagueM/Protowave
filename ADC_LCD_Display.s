@@ -115,15 +115,19 @@ Multiply_8x24:
 	return
 
 Get_Digits:
-	; Setup 16x16
+	// TODO explain what this does
+	//
+	//
+    
+	// Setup 16x16
 	call	Setup_Multiply_16x16
-	; Do 16x16 mult
+	// Do 16x16 mult
 	call	Multiply_16x16
-	; Set first digit
+	// Set first digit
 	movf	RES3, W
 	movwf	DIG0, F
 
-	; Setup 8x24
+	// Setup 8x24
 	movlw	0x0A
 	movwf	ARG1L, F
 	
@@ -133,9 +137,11 @@ Get_Digits:
 	movwf	ARG2H, F
 	movf	RES2, W
 	movwf	ARG2U, F
-	; Do 8x24 mult and set each digit three times
+	
+	// Do 8x24
 	call	Multiply_8x24
-	;  set digit
+	
+	// Setting digits to present on LCD
 	movf	RES3, W
 	movwf	DIG1, F
 	

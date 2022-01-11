@@ -6,11 +6,11 @@ extrn	KB_Setup, KB_Main
 extrn	ADC_Setup
     
 psect	code, abs
-rst:	org	0x0000	; reset vector
+rst:	org	0x0000		    ; reset vector
 	
 	goto	Init
 
-int_hi:	org	0x0008	; high vector, no low vector
+int_hi:	org	0x0008		    ; high vector, no low vector
 	goto	DAC_Interrupt_High
 
 Init:

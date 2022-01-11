@@ -11039,11 +11039,11 @@ DAC_Interrupt_High:
  btfss PORTD, 6, A
  call Do_Square
 
- ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
- movlw 0x0
+
+ movlw 0x0 ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* low
  movwf PORTD
- ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* high
- movlw 0x1 | 0x2
+
+ movlw 0x1 | 0x2 ; Set ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* high
  movwf PORTD
  retfie f ; fast return from interrupt
 
@@ -11054,8 +11054,8 @@ DAC_Setup:
  clrf LATJ, A ; Clear PORTJ outputs
  movlw 01100000B
  movwf TRISD, A
- ; Set both ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* to high
- movlw 0x1 | 0x2
+
+ movlw 0x1 | 0x2 ; Set both ((PORTE) and 0FFh), 2, a* and ((EECON1) and 0FFh), 1, a* to high
  movwf PORTD
 
  movlw 00000001B
@@ -11080,30 +11080,30 @@ DAC_Setup:
  return
 
 Read_Major_Scale:
-     movlw low highword(scale_table_major) ; address of data in PM
- movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scale_table_major) ; address of data in PM
- movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scale_table_major) ; address of data in PM
- movwf TBLPTRL, A ; load low byte to TBLPTRL
+     movlw low highword(scale_table_major)
+ movwf TBLPTRU, A
+ movlw high(scale_table_major)
+ movwf TBLPTRH, A
+ movlw low(scale_table_major)
+ movwf TBLPTRL, A
  return
 
 Read_Minor_Scale:
-     movlw low highword(scale_table_minor) ; address of data in PM
- movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scale_table_minor) ; address of data in PM
- movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scale_table_minor) ; address of data in PM
- movwf TBLPTRL, A ; load low byte to TBLPTRL
+     movlw low highword(scale_table_minor)
+ movwf TBLPTRU, A
+ movlw high(scale_table_minor)
+ movwf TBLPTRH, A
+ movlw low(scale_table_minor)
+ movwf TBLPTRL, A
  return
 
 Read_Song_Notes:
-        movlw low highword(scale_table_song) ; address of data in PM
- movwf TBLPTRU, A ; load upper bits to TBLPTRU
- movlw high(scale_table_song) ; address of data in PM
- movwf TBLPTRH, A ; load high byte to TBLPTRH
- movlw low(scale_table_song) ; address of data in PM
- movwf TBLPTRL, A ; load low byte to TBLPTRL
+        movlw low highword(scale_table_song)
+ movwf TBLPTRU, A
+ movlw high(scale_table_song)
+ movwf TBLPTRH, A
+ movlw low(scale_table_song)
+ movwf TBLPTRL, A
  return
 
 DAC_Change_Frequency:
